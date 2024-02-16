@@ -27,7 +27,7 @@
 
     header h1 {
       margin: 0;
-      font-size: 2.5em;
+      font-size: 3em;
       text-transform: uppercase;
       letter-spacing: 3px;
       color: #fff;
@@ -68,7 +68,7 @@
 
     .portfolio-item h2 {
       margin-top: 0;
-      font-size: 1.5em;
+      font-size: 2em;
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #ffd700; /* Yellow color */
@@ -110,9 +110,44 @@
     .animated {
       animation: fadeInDown 1s ease-out;
     }
+
+    /* Visual Enhancements */
+    .hero-image {
+      background-image: url('https://via.placeholder.com/800x400');
+      background-size: cover;
+      height: 400px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      font-size: 3em;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #fff;
+    }
+
+    .hero-text p {
+      font-size: 1.2em;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
+  <div class="hero-image">
+    <div class="hero-text">
+      <h1>Welcome to My Portfolio</h1>
+      <p>Check Out My Work Below</p>
+    </div>
+  </div>
   <div class="container animated">
     <header>
       <h1>Amy Quynh Anh Nguyen</h1>
@@ -128,4 +163,17 @@
       <h2>About Me</h2>
       <p>Welcome to my portfolio! I am passionate about web development and design. Check out my projects below!</p>
     </section>
-    <section id="portf
+    <section id="portfolio" class="portfolio-item">
+      <h2>Portfolio</h2>
+      <p>Coming soon...</p>
+    </section>
+    <section id="contact" class="portfolio-item">
+      <h2>Contact</h2>
+      <p>Feel free to reach out to me at amy@example.com</p>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2024 Amy Quynh Anh Nguyen - All rights reserved.</p>
+  </footer>
+</body>
+</html>
