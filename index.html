@@ -12,17 +12,22 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #111111; /* Dark background color */
       color: #fff; /* Text color */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Ensure footer stays at bottom */
     }
 
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
+      flex-grow: 1; /* Grow to fill remaining space */
     }
 
     header {
       text-align: left;
       padding: 20px;
+      order: 1; /* Place header first in the document flow */
     }
 
     header h1 {
@@ -38,6 +43,7 @@
     nav {
       text-align: right;
       padding: 10px 0;
+      order: 3; /* Place navigation last in the document flow */
     }
 
     nav ul {
@@ -82,10 +88,9 @@
     footer {
       text-align: center;
       padding: 20px;
-      position: fixed;
-      bottom: 0;
       width: 100%;
       background-color: #000;
+      order: 2; /* Place footer second in the document flow */
     }
 
     footer p {
@@ -113,10 +118,10 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>Amy Quynh Anh Nguyen</h1>
+  </header>
   <div class="container animated">
-    <header>
-      <h1>Amy Quynh Anh Nguyen</h1>
-    </header>
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
