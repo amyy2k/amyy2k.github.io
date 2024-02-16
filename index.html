@@ -111,32 +111,6 @@
 	}
 }
 
-	.shine {
-		background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
-		-webkit-background-size: 150px;
-		color: $text-color;
-		-webkit-background-clip: text;
-		-webkit-animation-name: shine;
-		-webkit-animation-duration: $duration;
-		-webkit-animation-iteration-count: infinite;
-		text-shadow: 0 0px 0px rgba(255, 255, 255, 0.5);
-	}
-
-
-	@-webkit-keyframes shine {
-		0%, 10% {
-			background-position: -1000px;
-		}
-		20% {
-			background-position: top left;
-		}
-		90% {
-			background-position: top right;
-		}
-		100% {
-			background-position: 1000px;
-		}
-	}
 
     /* Keyframe animation for header */
     @keyframes fadeInDown {
@@ -177,13 +151,7 @@
     }
   </style>
 </head>
-<body>
-	<!-- Include the osu! cursor script -->
-	<script src="osu-lazer-style-cursor/src/main.js"></script>
-	<script>
-	  // Create a new instance of the osuCursor
-	  var cursor = new osuCursor();
-	</script>
+<body>	
   <div class="container animated">
     <header>
       <h1>Amy Quynh Anh Nguyen</h1>
