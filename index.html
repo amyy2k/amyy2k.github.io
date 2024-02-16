@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,16 +9,20 @@
   <style>
     /* General Styles */
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-image: linear-gradient(to right, #777696 , #796878);
-      color: #fff; /* Light gray text color */
+		margin: 0;
+		padding: 0;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		background: linear-gradient(-45deg, #997a8d, #777696);
+		background-size: 400% 400%;
+		animation: gradient 15s ease infinite;
+		height: 100vh;
+		color: #fff; /* Light gray text color */
     }
 
     .container {
       margin: 0 auto;
-      padding: 20px;
+	  padding: 50px;
+
     }
 
     header {
@@ -93,6 +99,45 @@
       color: #fff; /* Dark gray color */
     }
 
+	@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+	.shine {
+		background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+		-webkit-background-size: 150px;
+		color: $text-color;
+		-webkit-background-clip: text;
+		-webkit-animation-name: shine;
+		-webkit-animation-duration: $duration;
+		-webkit-animation-iteration-count: infinite;
+		text-shadow: 0 0px 0px rgba(255, 255, 255, 0.5);
+	}
+
+
+	@-webkit-keyframes shine {
+		0%, 10% {
+			background-position: -1000px;
+		}
+		20% {
+			background-position: top left;
+		}
+		90% {
+			background-position: top right;
+		}
+		100% {
+			background-position: 1000px;
+		}
+	}
+
     /* Keyframe animation for header */
     @keyframes fadeInDown {
       from {
@@ -133,6 +178,13 @@
   </style>
 </head>
 <body>
+	<!-- Include the osu! cursor script -->
+	<script src="../dist/index.umd.js" type="module"></script>
+
+	<script>
+	  // Create a new instance of the osuCursor
+	  var cursor = new osuCursor();
+	</script>
   <div class="container animated">
     <header>
       <h1>Amy Quynh Anh Nguyen</h1>
