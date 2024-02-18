@@ -6,34 +6,80 @@
   <title>Amy Quynh Anh Nguyen - Portfolio</title>
   <style>
     /* General Styles */
-	:root {
-	--blob-color: linear-gradient(
-		to right,
-		#687969,
-		#7d9bd7
-
-
-	);
-	--blob-size: 400px;
-}
     body {
-		margin: 0;
-		padding: 0;
-		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		background: linear-gradient(-45deg, #997a8d, #777696);
-		background-size: 400% 400%;
-		animation: gradient 15s ease infinite;
-		height: 100vh;
-		color: #fff; /* Light gray text color */
-		overflow: hidden;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        height: 100vh;
+        color: #000000;
+        overflow: hidden;
+        position: relative; /* Make body relative for absolute positioning */
     }
-	
 
+    .background-animation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Ensure the animation div covers the entire viewport width */
+        height: 100%; /* Ensure the animation div covers the entire viewport height */
+        background-image: url('https://i.imgur.com/4Cm0XBO.png');
+        background-size: cover;
+        background-position: top;
+        z-index: -1; /* Position behind content */
+    }
+
+
+    .center{
+      transform: translate(-50%,-50%)
+      animation: floating 2s linear infinite
+    }
+
+    /* Add this CSS to style the floating effect */
+.project {
+  position: absolute;
+  animation: floatAnimation 5s infinite linear alternate;
+  margin: 100px;
+  text-transform: uppercase;
+  font-family: 'Segoe UI';
+  text-align: center;
+  font-weight: bold
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(20% * (2 * var(--direction) - 1)), -30px); /* Adjust the direction of translation */
+  }
+}
+
+.project:nth-child(odd) {
+  left: 20%; /* Adjust the percentage value to offset each odd project */
+}
+
+.project:nth-child(even) {
+  left: 60%; /* Adjust the percentage value to offset each even project */
+}
+/* Adjust other styles as needed */
+.portfolio-container {
+  position: relative;
+  z-index: 1; /* Ensure it's above the background blobs */
+  /* Add other styles for positioning and layout */
+}
+    :root {
+  	--blob-color: linear-gradient(
+  		to right,
+  		#687969,
+  		#7d9bd7
+  	);
+  	--blob-size: 400px;
+  }
 	#blob {
 	animation: rotate360 20s infinite;
 	background: var(--blob-color);
 	filter: blur(calc(var(--blob-size)/2.15));
-	
+
 	width: var(--blob-size);
 	height: var(--blob-size);
 	position: absolute;
@@ -56,8 +102,6 @@
 		z-index: 2;
 		backdrop-filter: blur;
 	}
-	
-	
     .container {
       margin: 0 auto;
 	  padding: 50px;
@@ -69,15 +113,21 @@
     }
 
     header h1 {
-      margin: 0;
-      padding: 20px;
-      font-size: 3em;
+      background-image: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM29ucjZ4aTEzNzFuNGc3dXZmMTNjZWt4Z2loZGo5bTQ5ZndycGd2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/whE2HDrw3xIcpfBPT3/giphy.gif);
+      background-size: cover;
+      color: transparent;
+      -moz-background-clip: text;
+      -webkit-background-clip: text;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      color: #b39eb5; 
-      font-weight: bold;
+      font-size: 100px;
+      margin: 10px 0;
     }
-	
+    header h2 {
+      color: gray;
+      text-transform: uppercase;
+      font-size: 15px;
+      margin: 10px 0;
+    }
 	.animate-charcter
 {
    text-transform: uppercase;
@@ -101,54 +151,6 @@
       font-size: 190px;
 }
 
-@keyframes textclip {
-  to {
-    background-position: 200% center;
-  }
-}
-
-    /* Navigation */
-    nav {
-      text-align: center;
-      padding: 10px 0;
-    }
-
-    nav ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    nav ul li {
-      display: inline;
-      margin-left: 20px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      color: 	#997a8d;
-    }
-
-    /* Content */
-    .portfolio-item {
-      margin-bottom: 100px;
-    }
-
-    .portfolio-item h2 {
-      font-size: 1.15em;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #fff; 
-    }
-
-    .portfolio-item p {
-      margin-top: 5px;
-    }
 
     /* Footer */
     footer {
@@ -157,7 +159,7 @@
       position: fixed;
       bottom: 0;
       width: 100%;
-      background-color: #796878; /* Dark gray background color */
+      background-color: #000000; /* Dark gray background color */
     }
 
     footer p {
@@ -165,6 +167,24 @@
       font-size: 0.8em;
       color: #fff; /* Dark gray color */
     }
+
+
+@keyframes floating{
+  0%{
+    transform: translate(-50%,-50%);
+  }
+  50%{
+    transform: translate(-50%,-30%);
+  }
+  100%{
+    transform: translate(-50%,-50%);
+  }
+}
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
 
 	@keyframes gradient {
 	0% {
@@ -177,8 +197,6 @@
 		background-position: 0% 50%;
 	}
 }
-
-
     /* Keyframe animation for header */
     @keyframes fadeInDown {
       from {
@@ -199,37 +217,36 @@
 
   </style>
 </head>
-<body>	
+<body>
 	<div id="blob"></div>
 	<div id="blob-blur"></div>
   <div class="container animated">
     <header>
       <h1>Amy Quynh Anh Nguyen</h1>
+      <h2>PROGRAMMER | FRONT-END | BACK-END | 3D ARTIST | UX/UI | GAME DEVELOPER | MUSIC ENJOYER | FOOD ENTHUSIAST</h2>
+
     </header>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <section id="about" class="portfolio-item">
-      <h2>About Me</h2>
-      <p>Graduated from California State University Fullerton with a Bachelor’s in Computer Science. Diverged into 3D Modeling, UX Designs, and Game Development. Hobby in music and culinary.</p>
-    </section>
-    <section id="portfolio" class="portfolio-item">
-      <h2>Portfolio</h2>
-      <p>Coming soon...</p>
-    </section>
-    <section id="contact" class="portfolio-item">
-      <h2>Contact</h2>
-      <p>Feel free to reach out to me at amy@example.com</p>
-    </section>
   </div>
+
+  <!-- Inside the <body> tag -->
+<div class="portfolio-container">
+  <div class="project">
+    <img src="project1.jpg" alt="Project 1">
+    <p>FOOD DELIVERY APPLICATION WITH iOS</p>
+  </div>
+  <div class="project">
+    <img src="project2.jpg" alt="Project 2">
+    <p>CUSTOM-MADE MUSIC MIXER WITH RASPERRY PI</p>
+  </div>
+  <!-- Add more projects as needed -->
+</div>
+
+
+
   <footer>
     <p>&copy; 2024 Amy Quynh Anh Nguyen - All rights reserved.</p>
   </footer>
-  
+
    <script>
     const blob = document.getElementById('blob');
 
@@ -245,6 +262,14 @@
       });
     }
   </script>
-  
+
+  <script>
+  // JavaScript to randomly assign direction to each project
+document.querySelectorAll('.project').forEach(project => {
+  project.style.setProperty('--direction', Math.round(Math.random())); // Set direction to either 0 or 1
+});
+
+</script>
+
 </body>
 </html>
