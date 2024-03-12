@@ -1,332 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amy Quynh Anh Nguyen - Portfolio</title>
-  <style>
-    /* General Styles */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        height: 100vh;
-        color: #000000;
-        overflow: hidden;
-        position: relative; /* Make body relative for absolute positioning */
-    }
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .center{
-      transform: translate(-50%,-50%)
-      animation: floating 2s linear infinite
-    }
-
-    /* Add this CSS to style the floating effect */
-.project {
-  position: absolute;
-  animation: floatAnimation 5s infinite linear alternate;
-  margin: 100px;
-  text-transform: uppercase;
-  font-family: 'Segoe UI';
-  text-align: center;
-  font-weight: bold
-}
-
-@keyframes floatAnimation {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(calc(20% * (2 * var(--direction) - 1)), -30px); /* Adjust the direction of translation */
-  }
-}
-
-.project:nth-child(odd) {
-  left: 20%; /* Adjust the percentage value to offset each odd project */
-}
-
-.project:nth-child(even) {
-  left: 60%; /* Adjust the percentage value to offset each even project */
-}
-/* Adjust other styles as needed */
-.portfolio-container {
-  position: relative;
-  z-index: 1; /* Ensure it's above the background blobs */
-  /* Add other styles for positioning and layout */
-}
-
-	@keyframes rotate360 {
-		from { rotate: 0deg; }
-		50% { scale: 1 1.15; }
-		to { rotate: 360deg; }
-	}
-
-
-    .container {
-      margin: 0 auto;
-	  padding: 50px;
-
-    }
-
-    header {
-      text-align: center;
-    }
-
-    header h1 {
-      background-image: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM29ucjZ4aTEzNzFuNGc3dXZmMTNjZWt4Z2loZGo5bTQ5ZndycGd2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/whE2HDrw3xIcpfBPT3/giphy.gif);
-      background-size: cover;
-      color: transparent;
-      -moz-background-clip: text;
-      -webkit-background-clip: text;
-      text-transform: uppercase;
-      font-size: 100px;
-      margin: 10px 0;
-    }
-    header h2 {
-      color: gray;
-      text-transform: uppercase;
-      font-size: 15px;
-      margin: 10px 0;
-    }
-	.animate-charcter
-{
-   text-transform: uppercase;
-  background-image: linear-gradient(
-    -225deg,
-    #231557 0%,
-    #44107a 29%,
-    #ff1361 67%,
-    #fff800 100%
-  );
-  background-size: auto auto;
-  background-clip: border-box;
-  background-size: 200% auto;
-  color: #ededed;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textclip 2s linear infinite;
-  display: inline-block;
-      font-size: 190px;
-}
-
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #000000; /* Dark gray background color */
-    }
-
-    footer p {
-      margin: 0;
-      font-size: 0.8em;
-      color: #fff; /* Dark gray color */
-    }
-
-
-@keyframes floating{
-  0%{
-    transform: translate(-50%,-50%);
-  }
-  50%{
-    transform: translate(-50%,-30%);
-  }
-  100%{
-    transform: translate(-50%,-50%);
-  }
-}
-@keyframes textclip {
-  to {
-    background-position: 200% center;
-  }
-}
-
-	@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-    /* Keyframe animation for header */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Animation class */
-    .animated {
-      animation: fadeInDown 1s ease-out;
-    }
-
-  </style>
+  <title>Amy Quynh Anh Nguyen Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-  <canvas id="starCanvas"></canvas>
-  <script src="script.js"></script>
-	<div id="blob"></div>
-	<div id="blob-blur"></div>
-  <div class="container animated">
-    <header>
+  <div class="container">
+    <div class="slides slide1">
       <h1>Amy Quynh Anh Nguyen</h1>
-      <h2>PROGRAMMER | FRONT-END | BACK-END | 3D ARTIST | UX/UI | GAME DEVELOPER | MUSIC ENJOYER | FOOD ENTHUSIAST</h2>
-
-    </header>
+      <div class="handles">
+        <a href="https://www.linkedin.com/in/amy-nguyen-355205206/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/amyy2k" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/hanloda" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/q.a.m.y/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://open.spotify.com/user/x1jogxoxr612sm42l0wrexxoe?si=298794d7c5c34ccd" target="_blank"><i class="fab fa-spotify"></i></a>
+      </div>
   </div>
 
-  <!-- Inside the <body> tag -->
-<div class="portfolio-container">
-  <div class="project">
-    <img src="project1.jpg" alt="Project 1">
-    <p>FOOD DELIVERY APPLICATION WITH iOS</p>
-  </div>
-  <div class="project">
-    <img src="project2.jpg" alt="Project 2">
-    <p>CUSTOM-MADE MUSIC MIXER WITH RASPERRY PI</p>
-  </div>
-  <!-- Add more projects as needed -->
+  <div class="slides slide2">
+    <div class="intro-text">I am a...  </div>
+    <div class="descriptor programmer">PROGRAMMER  </div>
+    <div class="descriptor developer">DEVELOPER  </div>
+    <div class="descriptor front-end">FRONT-END  </div>
+    <div class="descriptor vertical artist">DESIGNER  </div>
+    <div class="descriptor designer">ARTIST  </div>
+    <div class="descriptor music">MELOMANIAC  </div>
+    <div class="descriptor explorer">EXPLORER  </div>
+    <div class="descriptor food">FOODIE  </div>
+    <div class="descriptor geek">GEEK  </div>
+
+<!-- Add more descriptors as needed -->
 </div>
 
+    <div class="slides slide3">
+      <h2>PROJECTS</h2>
+    </div>
 
 
-  <footer>
-    <p>&copy; 2024 Amy Quynh Anh Nguyen - All rights reserved.</p>
-  </footer>
+    <footer>
+      <p>&copy; 2024 Amy Quynh Anh Nguyen - All rights reserved.</p>
+    </footer>
 
-   <script>
-    const blob = document.getElementById('blob');
-
-    document.body.onpointermove = event => {
-      const { clientX, clientY } = event;
-
-      blob.animate({
-        left: `${clientX}px`,
-        top: `${clientY}px`
-      }, {
-        duration: 3000,
-        fill: 'forwards'
-      });
-    }
-  </script>
-
-  <script>
-  // JavaScript to randomly assign direction to each project
-document.querySelectorAll('.project').forEach(project => {
-  project.style.setProperty('--direction', Math.round(Math.random())); // Set direction to either 0 or 1
-});
-
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const canvas = document.getElementById('starCanvas');
-    const ctx = canvas.getContext('2d');
-
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    let stars = [];
-
-
-    window.addEventListener('resize', function() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    });
-
-    class Star {
-        constructor(x, y, velocityX, velocityY) {
-            this.x = x;
-            this.y = y;
-            this.finalSize = Math.random() * 2;
-            this.size = this.finalSize * 2; // Starting size is twice the final size
-            this.alpha = 1;
-            this.velocityX = velocityX * 0.05;
-            this.velocityY = 1 + Math.random() + velocityY * 0.05;
-            this.gravity = 0.02;
-            this.drag = 0.97;
-            this.turbulence = () => Math.random() * 0.5 - 0.25;
-            this.timeElapsed = 0; // Time since the star was created
-        }
-
-        draw() {
-            ctx.fillStyle = `rgba(0, 0, 0, ${this.alpha})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-
-        update(deltaTime) {
-            this.x += this.velocityX + this.turbulence();
-            this.velocityX *= this.drag;
-            this.y += this.velocityY;
-            this.velocityY += this.gravity;
-            this.alpha = Math.max(0, this.alpha - 0.005);
-
-            this.timeElapsed += deltaTime;
-            if (this.timeElapsed < 2000) { // 2000 milliseconds = 2 seconds
-                this.size = this.finalSize * 2 - (this.finalSize * this.timeElapsed / 2000);
-            } else {
-                this.size = this.finalSize;
-            }
-        }
-    }
-
-
-    let lastMouseX = 0;
-    let lastMouseY = 0;
-    let mouseVelocityX = 0;
-    let mouseVelocityY = 0;
-
-    function addStar(e) {
-        // Calculate mouse velocity
-        mouseVelocityX = e.clientX - lastMouseX;
-        mouseVelocityY = e.clientY - lastMouseY;
-        lastMouseX = e.clientX;
-        lastMouseY = e.clientY;
-
-        // Random offset for mouse velocity
-        let randomOffsetX = (Math.random() - 0.5) * 100; // Adjust the multiplier for more or less randomness
-        let randomOffsetY = (Math.random() - 0.5) * 100;
-
-        // Create new star with modified velocity
-        stars.push(new Star(e.clientX, e.clientY, mouseVelocityX + randomOffsetX, mouseVelocityY + randomOffsetY));
-    }
-
-    canvas.addEventListener('mousemove', addStar);
-
-    let lastTime = 0;
-
-    function update(time = 0) {
-        const deltaTime = time - lastTime;
-        lastTime = time;
-
-        ctx.clearRect(0, 0, width, height);
-        stars.forEach(star => star.update(deltaTime));
-        stars.forEach(star => star.draw());
-        stars = stars.filter(star => star.alpha > 0 && star.y < height && star.x > 0 && star.x < width);
-        requestAnimationFrame(update);
-    }
-
-    update();
-});
-</script>
 
 </body>
 </html>
