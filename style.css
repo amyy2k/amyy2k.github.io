@@ -1,0 +1,157 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  scroll-snap-type: y mandatory;
+}
+
+/* animations */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+.intro-text {
+  width: 9ch;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+/* Footer */
+footer {
+     text-align: center;
+     padding: 20px;
+     position: fixed;
+     bottom: 0;
+     width: 100%;
+     background-color: black; /* Dark gray background color */
+   }
+
+footer p {
+     margin: 0;
+     font-size: 0.8em;
+     color: #fff; /* Dark gray color */
+   }
+
+.container{
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.slides {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  align-items: center;
+  justify-content: center;
+  color: white;
+  scroll-snap-align: start;
+}
+
+.handles {
+  display: flex; /* Change to flexbox */
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Adjust spacing */
+}
+
+.handles i {
+  font-size: 24px; /* Adjust icon size */
+  margin: 0 10px; /* Adjust spacing between icons */
+  color: #333; /* Icon color */
+}
+
+.handles i:hover {
+  color: #000; /* Change color on hover */
+}
+
+.slides h2{
+  font-size: 100px;
+  font-weight: 500;
+  max-width: full;
+  position: relative;
+}
+.slides h1{
+  background-image: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM29ucjZ4aTEzNzFuNGc3dXZmMTNjZWt4Z2loZGo5bTQ5ZndycGd2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/whE2HDrw3xIcpfBPT3/giphy.gif);
+  background-size: cover;
+  color: transparent;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  text-transform: uppercase;
+  font-size: 120px;
+}
+
+.slide1{
+  background: #e0e0e0;
+	height: 100vh;
+}
+
+
+.slide2 {
+  background: linear-gradient(275deg, white, black);
+  color: white; /* Ensure text is visible on a dark background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Allows for absolute positioning of child elements */
+  overflow: hidden; /* Keeps absolute elements contained */
+}
+
+.slide2 .intro-text {
+  font-size: 2rem; /* Adjust based on your preference */
+}
+
+.slide2 .descriptor {
+  position: absolute;
+  font-size: 8vw; /* Responsive font size */
+  font-weight: bold;
+  white-space: nowrap; /* Keeps the text in a single line */
+  opacity: 0.8; /* Adjust based on your preference */
+  transform: translate(-50%, -50%); /* Centers the text */
+}
+.slide2 .vertical {
+  transform: translate(-50%, -50%) rotate(-90deg); /* Rotates text 90 degrees counter-clockwise */
+}
+
+/* Example positions, you will need to adjust these */
+.slide2 .programmer { top: 7%; left: 36.5%; }
+.slide2 .developer { top: 20%; left: 31.5%; }
+.slide2 .front-end { top: 33%; left: 30%; }
+.slide2 .artist { top: 43%; left: 3.5%; }
+.slide2 .designer { top: 46%; left: 22%; }
+.slide2 .music {color:black; top: 79%; left: 72%; }
+.slide2 .explorer {color:black; top: 66%; left: 77%; }
+.slide2 .food {color:black; top: 53%; left: 84%; }
+.slide2 .geek {color:black; top: 40%; left: 88%; }
+
+/* Add more for each descriptor */
+
+
+.slide3{
+  background: #212121;
+}
