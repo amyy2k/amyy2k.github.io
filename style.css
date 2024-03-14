@@ -195,7 +195,7 @@ footer p {
 }
 
 .slide3{
-  background-image: url(https://img.freepik.com/free-photo/old-black-brick-wall-background_125540-1739.jpg?w=1380&t=st=1710282638~exp=1710283238~hmac=43393ebd58afbaa0c8c5822207e5fc77616f31cd7107afe6efd2d3b680848dd0);
+  background-image: url('images/blackwall.jpg');
   background-size: cover; /* Stretch the background image to cover the entire element */
   background-position: center; /* Center the background image */
   position: relative; /* This ensures the poster-image can be positioned absolutely relative to this container */
