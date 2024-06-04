@@ -89,12 +89,14 @@ footer p {
   color: #000; /* Change color on hover */
 }
 
-.slides h2{
-  font-size: 100px;
-  font-weight: 500;
-  max-width: full;
-  position: relative;
+.slides h2 {
+  font-size: 50px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(20%);
 }
+
 .slides h1{
   background-image: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM29ucjZ4aTEzNzFuNGc3dXZmMTNjZWt4Z2loZGo5bTQ5ZndycGd2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/whE2HDrw3xIcpfBPT3/giphy.gif);
   background-size: cover;
@@ -112,14 +114,10 @@ footer p {
 
 
 .slide2 {
-  background: linear-gradient(275deg, white, black);
+  background-image: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHNia2RzcTJ3ejV3dmpmN3M0NHd3MXhpanB5dXFybGdydjVhdDRwbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UYBDCJjwOd9Re/giphy.gif);
+  filter: grayscale(100%);
   color: white; /* Ensure text is visible on a dark background */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative; /* Allows for absolute positioning of child elements */
-  overflow: hidden; /* Keeps absolute elements contained */
+  cursor: url('http://www.rw-designer.com/cursor-view/30200.png'), auto;
 }
 
 .slide2 .intro-text {
@@ -128,78 +126,189 @@ footer p {
 
 .slide2 .descriptor {
   position: absolute;
-  font-size: 8vw; /* Responsive font size */
+  font-size: 2vw; /* Responsive font size */
   font-weight: bold;
-  white-space: nowrap; /* Keeps the text in a single line */
-  opacity: 0.8; /* Adjust based on your preference */
   transform: translate(-50%, -50%); /* Centers the text */
 }
+
 .slide2 .vertical {
   transform: translate(-50%, -50%) rotate(-90deg); /* Rotates text 90 degrees counter-clockwise */
 }
 
+@keyframes jitter {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(5px, 5px); }
+  50% { transform: translate(0, 0); }
+  75% { transform: translate(-5px, -5px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes jitter2 {
+  100% { transform: translate(0, 0); }
+  75% { transform: translate(5px, 5px); }
+  50% { transform: translate(0, 0); }
+  25% { transform: translate(-5px, -5px); }
+  0% { transform: translate(0, 0); }
+}
 /* Example positions, you will need to adjust these */
-.slide2 .programmer { top: 7%; left: 36.5%; }
-.slide2 .developer { top: 20%; left: 31.5%; }
-.slide2 .front-end { top: 33%; left: 30%; }
-.slide2 .artist { top: 43%; left: 3.5%; }
-.slide2 .designer { top: 46%; left: 22%; }
-.slide2 .music {color:black; top: 79%; left: 72%; }
-.slide2 .explorer {color:black; top: 66%; left: 77%; }
-.slide2 .food {color:black; top: 53%; left: 84%; }
-.slide2 .geek {color:black; top: 40%; left: 88%; }
+.slide2 .programmer {   animation: jitter 5s infinite alternate ease-in-out;
+top: 10%; left: 20%; }
+.slide2 .developer {  animation: jitter2 5s infinite alternate ease-in-out;
+ top: 30%; left: 20%; }
+.slide2 .front-end {  animation: jitter 5s infinite alternate ease-in-out;
+ top: 70%; left: 30%; }
+.slide2 .artist {  animation: jitter2 5s infinite alternate ease-in-out;
+ top: 10%; left: 70%; }
+.slide2 .designer {  animation: jitter 5s infinite alternate ease-in-out;
+ top: 30%; left: 80%; }
+.slide2 .music {  animation: jitter2 5s infinite alternate ease-in-out;
+ top: 70%; left: 60%; }
+.slide2 .explorer {  animation: jitter 5s infinite alternate ease-in-out;
+ top: 50%; left: 70%; }
+.slide2 .food {  animation: jitter 5s infinite alternate ease-in-out;
+ top: 50%; left: 15%; }
+.slide2 .geek {  animation: jitter2 5s infinite alternate ease-in-out;
+ top: 20%; left: 60%; }
+ .slide2 .graduate {  animation: jitter2 5s infinite alternate ease-in-out;
+  top: 70%; left: 5%; }
 
+  .slide2 .descriptor:hover {
+    animation-play-state: paused;
+  }
+
+  .descriptor {
+    position: absolute;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .descriptor:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.descriptor:hover span {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.tooltip {
+  visibility: hidden;
+  font-weight: lighter;
+  font-family: monospace;
+  opacity: 0;
+  position: relative;
+  background: black;
+  font-size: 16px;
+  color: white;
+  padding: 14px;
+  border-radius: 5px;
+  border: 1px solid white; /* White border */
+  white-space: normal;
+  max-width: 400px !important;
+  width: auto !important;
+  transition: opacity 0.5s;
+  z-index: 1;
+  transform: translateX(-50%);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; /* Adjust if needed */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.programmer .tooltip { top: -40px; left: 35%; }
+.developer .tooltip { top: -40px; left: 35%; }
+.front-end .tooltip { top: -40px; left: 35%; }
+.artist .tooltip { top: -40px; left: 35%; }
+.designer .tooltip { top: -40px; left: 35%; }
+.music .tooltip { top: -40px; left: 35%; }
+.explorer .tooltip { top: -40px; left: 35%; }
+.food .tooltip { top: -40px; left: 35%; }
+.geek .tooltip { top: -40px; left: 15%; }
+.graduate .tooltip { top: -40px; left: 35%; }
 /* Add more for each descriptor */
 
-.poster-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300px;
-  height: auto;
-}
-
-.grafitti {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 800px;
-  height: auto;
-}
-
-.slide3 .portfolio img {
-  transform: rotate(10deg) translate(160%, -120%);
-}
-
-.slide3 .fooddeli img {
-  transform: rotate(-5deg) translate(90%, -40%);
-}
-
-.slide3 .dragon img {
-  transform: rotate(-10deg) translate(-100%, -70%);
-}
-
-.slide3 .arrival img {
-  transform: translate(-40%, -90%);
-}
-
-.slide3 .hainan img {
-  transform: translate(-40%, -30%) rotate(20deg);
-}
-.slide3 .dean img {
-  transform: translate(-180%, -10%);
-}
-
-.slide3 .project img {
-  transform: rotate(-25deg)translate(-90%, -410%);
-}
 
 .slide3{
-  background-image: url('images/blackwall.jpg');
+  background-color: #e0e0e0;
   background-size: cover; /* Stretch the background image to cover the entire element */
   background-position: center; /* Center the background image */
   position: relative; /* This ensures the poster-image can be positioned absolutely relative to this container */
 }
-.slide4{
-  background: black;
+
+.slide3 .descriptor {
+  position: absolute;
+  font-size: 2vw; /* Responsive font size */
+  font-weight: bold;
+  font-family: monospace;
+  transform: translate(-300%, 130%); /* Centers the text */
+  color: #2A2A2A;
+
+}
+
+.project-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the gap between cards */
+  justify-content: center;
+  align-items: center;
+}
+
+.project-card {
+  position: relative;
+  width: 200px; /* Square card dimensions */
+  height: 200px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: #F1F1F1;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.project-card:hover {
+  width: 400px; /* Expanded width */
+  height: 400px; /* Allow height to expand */
+}
+
+.project-info {
+  padding: 10px;
+  transition: opacity 0.3s ease;
+  color: #2A2A2A;
+}
+
+.project-info h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  font-family: monospace;
+  color: #2A2A2A;
+}
+
+
+.project-info .full-description {
+  display: none;
+}
+
+.project-card:hover .project-info .full-description {
+  display: block;
+}
+
+.project-card:hover .project-info h3 {
+  display: none;
+}
+
+.full-description img {
+  margin-left: 10px; /* Adjusts spacing between the text and the image */
+  vertical-align: middle; /* Aligns the image with the text */
 }
