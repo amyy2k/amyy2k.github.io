@@ -5,8 +5,10 @@
   <title>Amy Quynh Anh Nguyen Portfolio</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 <body>
+
   <div class="container">
     <div class="slides slide1">
       <h1>Amy Quynh Anh Nguyen</h1>
@@ -20,57 +22,90 @@
   </div>
 
   <div class="slides slide2">
-    <div class="intro-text">I am a...  </div>
-    <div class="descriptor programmer">PROGRAMMER  </div>
-    <div class="descriptor developer">DEVELOPER  </div>
-    <div class="descriptor front-end">FRONT-END  </div>
-    <div class="descriptor vertical artist">DESIGNER  </div>
-    <div class="descriptor designer">ARTIST  </div>
-    <div class="descriptor music">MELOMANIAC  </div>
-    <div class="descriptor explorer">EXPLORER  </div>
-    <div class="descriptor food">FOODIE  </div>
-    <div class="descriptor geek">GEEK  </div>
+    <div class="intro-text">I am a...</div>
+    <div class="descriptor programmer">PROGRAMMER
+      <div class="tooltip">I have began learning C++ as my first introduction to programming. Soon after, my knowledge has branched out to other various langues such as: Python, C#, CSS, Java, HTML, Swift, and MySQL.</div>
+    </div>
+    <div class="descriptor developer">DEVELOPER
+      <div class="tooltip">I have built many applications with my skills that I have gained from my time learning. I was able to create a music mixer that required a Raspberry Pi to be connected to a wired soundboard. This was able to play various tunes and beats to create unique patterns of music.</div>
+    </div>
+    <div class="descriptor front-end">FRONT-END
+      <div class="tooltip">I have created various frameworks built from designs that were made in Figma. I have been honing this skill for 4 years and I strive to bring people's and my own visions to life.</div>
+    </div>
+    <div class="descriptor artist">DESIGNER
+      <div class="tooltip">I love to interpret my visions through many expressions of art; things such as web design, 3D Modeling, fashion, logo creations, and drawing.</div>
+    </div>
+    <div class="descriptor designer">3D ARTIST
+      <div class="tooltip">In my free time I enjoy creating concept art of character designs and brining them to life in 3D models. My main program for 3D modeling is through Blender, Substance Painter, and Marvelous Designer. I tend to use my designs and sell them through Gumroad as freelance work.</div>
+    </div>
+    <div class="descriptor music">MELOMANIAC
+      <div class="tooltip">I listen to music daily, exploring artists from many genres and curating a playlist that I find most comfortable. I enjoy talking about music when meeting new people and sharing my favorite songs with them. Music helps me find peace and comforts me during tough times.</div>
+    </div>
+    <div class="descriptor explorer">EXPLORER
+      <div class="tooltip">I enjoy traveling during my time off, although I have yet to explore outside of the country. New York City and Yosemite National Park are two of the most memorable places I've visited. I also enjoy watching travel videos on YouTube to get a feel for various cultures.</div>
+    </div>
+    <div class="descriptor food">ENGINEER
+      <div class="tooltip">The Raspberry Pi was my first experience in creating physical computer models. I built a music mixer by wiring a numpad to the Pi and scripting the functionality with Python.
+    </div>
+    </div>
+    <div class="descriptor geek">GEEK
+      <div class="tooltip">Gaming has been a lifelong hobby of mine, beginning with the N64 and extending to the immersive experiences offered by modern virtual reality headsets. I enjoy a variety of indie games, such as Dave the Diver and Soma, as well as popular titles like Apex Legends and League of Legends.</div>
+    </div>
+    <div class="descriptor graduate">GRADUATE
+      <div class="tooltip">I graduated from California State University, Fullerton with a degree in Computer Science, attending from 2018 to 2024. I achieved a 3.0 GPA and aspire to pursue a career in UX engineering and software design.</div>
+    </div>
+
 </div>
 
 <div class="slides slide3">
-  <div class="portfolio">
-  <img src="images\amytposter.png" alt="Poster Description" class="poster-image">
-</div>
-<div class="project">
-<img src="images\project.png" alt="Poster Description" class="grafitti">
-</div>
-<div class="slide3">
-  <div class="fooddeli">
-    <a href="https://github.com/amyy2k/FoodDeli"target="_blank" rel="noopener noreferrer">
-      <img src="images\fooddeli.png" alt="Food Deli Poster" class="poster-image">
-    </a>
+  <div class="descriptor">projects.</div>
+  <div class="project-cards">
+    <div class="project-card">
+      <div class="project-info">
+        <h3>iOS Application</h3>
+        <p class="full-description">
+          This mock application enables users to discover restaurants that best cater to their tastes, using special filters to find niche accommodations. Initially brainstormed in Figma, the application was subsequently developed using Swift for iOS.
+          <br>
+          <a href="https://github.com/amyy2k/FoodDeli" target="_blank"><i class="fab fa-github" style="font-size: 30px;filter: grayscale(100%);padding: 10px;"></i>
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Raspberry Pi Music Mixer</h3>
+        <p class="full-description">
+          This project demonstrates the use of a matrix keypad to create sounds and display images with a click of the pad. Developed with a Raspberry Pi 4, it combines various hardware components and custom coding. Most of the code was written from scratch, building on basic keypad entry functionality. The result is a basic music mixer that allows users to create their own music, maintaining a consistent 90 BPM (beats per minute). With 12 different audio loops, users can craft unique tracks and tunes. This project showcases the potential of using the Raspberry Pi for music creation.
+          <br>
+          <a href="https://github.com/amyy2k/RasberryPiMusicMixer" target="_blank"><i class="fab fa-github" style="font-size: 30px;filter: grayscale(100%);padding: 10px;"></i>
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Vending Machine Database</h3>
+        <p class="full-description">
+          This project was focused on exploring MySQL. We developed a Vending Machine Management System that tracks inventory, sales, and the status of all vending machines. The system provides easy access to this information, facilitating efficient restocking schedules. The application was built using Python and integrated with MySQL.
+          <br>
+          <a href="https://csufgroup1.atlassian.net/jira/software/projects/CSUF/boards/1/backlog?selectedIssue=CSUF-2" target="_blank"><i class="fab fa-github" style="font-size: 30px;filter: grayscale(100%);padding: 10px;"></i>
+
+          </a>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="arrival">
-<img src="images\Arrival10.jpg" alt="Poster Description" class="poster-image">
-</div>
-<div class="hainan">
-<img src="images\hainan.png" alt="Poster Description" class="poster-image">
-</div>
-<div class="dragon">
-<img src="images\dragon.png" alt="Poster Description" class="poster-image">
-</div>
-<div class="dean">
-<img src="images\dean.png" alt="Poster Description" class="poster-image">
-</div>
-</div>
 
-<div class="slides slide4">
-  <h1>PROJECTS</h1>
+    <!-- Repeat .project-card for each project -->
+  </div>
 </div>
 
 
-    <footer>
-      <p>&copy; 2024 Amy Quynh Anh Nguyen - All rights reserved.</p>
-    </footer>
 
-
-
+<footer>
+  <p>&copy; 2024 Amy Quynh Anh Nguyen - All rights reserved.</p>
+</footer>
 </body>
 </html>
