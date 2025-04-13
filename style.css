@@ -1,314 +1,313 @@
-*{
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif; /* Newspaper feel */
+    height: 200vh;
+    background: #D9D9D9;
+}
+
+.welcome{
+  position: absolute;
   margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  box-sizing: border-box;
-  scroll-snap-type: y mandatory;
+  display: inline-block;
+  opacity: 100;
+  font-family: 'Italiana';
+  font-size: 100px;
+  color: #3A3A3A;
+  transform: translate(40%, 100%);
+  animation: dropFadeIn 2s ease forwards; /* Adjust duration and timing function as needed */
 }
 
-/* animations */
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@keyframes typing {
-  from {
-    width: 0
-  }
-}
-
-@keyframes blink {
-  50% {
-    border-color: transparent
-  }
-}
-.intro-text {
-  width: 9ch;
-  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid;
-  font-family: monospace;
-  font-size: 2em;
-}
-
-/* Footer */
-footer {
-     text-align: center;
-     padding: 20px;
-     position: fixed;
-     bottom: 0;
-     width: 100%;
-     background-color: black; /* Dark gray background color */
-   }
-
-footer p {
-     margin: 0;
-     font-size: 0.8em;
-     color: #fff; /* Dark gray color */
-   }
-
-.container{
-  width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
-}
-
-.slides {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column; /* Arrange items vertically */
-  align-items: center;
-  justify-content: center;
-  color: white;
-  scroll-snap-align: start;
-}
-
-.handles {
-  display: flex; /* Change to flexbox */
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px; /* Adjust spacing */
-}
-
-.handles i {
-  font-size: 24px; /* Adjust icon size */
-  margin: 0 10px; /* Adjust spacing between icons */
-  color: #333; /* Icon color */
-}
-
-.handles i:hover {
-  color: #000; /* Change color on hover */
-}
-
-.slides h2 {
-  font-size: 50px;
+.flower{
   position: absolute;
-  top: 0;
+  transform: scale(.2);
+  -webkit-filter: grayscale(100%);
+  -moz-filter:    grayscale(100%);
+  -ms-filter:     grayscale(100%);
+  -o-filter:      grayscale(100%);
+  filter: gray;
+  top: 11%;
+  left: 56.5%;
+  animation: FadeIn 2s ease forwards; /* Adjust duration and timing function as needed */
+
+}
+
+.firstName {
+    position: relative;
+    left: 640px;
+    top: 1240px;
+    display: inline-block;
+    opacity: 100;
+    font-family: 'Italiana';
+    font-size: 100px;
+    color: #3A3A3A;
+}
+
+.lastName {
+    position: relative;
+    left: 680px;
+    top: 1240px;
+    display: inline-block;
+    opacity: 100;
+    font-family: 'Italiana';
+    font-size: 100px;
+    color: #3A3A3A;
+}
+
+.line {
+  position: absolute;
+    background-color: #3A3A3A; /* Line color */
+}
+
+.top-line{
+  width: 0; /*1500*/
+  height: 5px;
+  left: 250px;
+  transform: translateY(-150px); /* Moves it up by half of its height */
+}
+.bottom-line{
+  width: 0; /* Initial width */
+  height: 5px; /* Thickness of the line */
+  right: 115%; /* Start from the center of the container, adjust as needed */
+  bottom: 45%; /* Align to the bottom edge of the container */
+  transform-origin: left; /* Ensure growth to the right */
+}
+
+.left-line{
+  height: 0; /*720*/
+  width: 5px;
+  left: 35px;
+  transform: translateY(-105px); /* Moves it up by half of its height */
+}
+.right-line{
+  height: 0; /* Initial height */
+  width: 5px; /* Thickness of the line */
+  right: 41px; /* Align to the right edge of the container if NGUYEN is at the right */
+  position: absolute; /* Ensure it positions relative to the nearest positioned ancestor */
+  bottom: 69%; /* Center vertically relative to NGUYEN */
+  transform-origin: bottom; /* Ensure growth upwards */
+}
+
+
+.scroll-down-arrow {
+  position: absolute;
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%) translateY(20%);
+  transform: translateX(-50%) scale(2);
+  text-align: center;
+  font-size: 5em; /* Large size for visibility */
+  color: #3A3A3A; /* Customize color */
+  animation: bounce 2s infinite;
 }
 
-.slides h1{
-  background-image: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM29ucjZ4aTEzNzFuNGc3dXZmMTNjZWt4Z2loZGo5bTQ5ZndycGd2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/whE2HDrw3xIcpfBPT3/giphy.gif);
-  background-size: cover;
-  color: transparent;
-  -moz-background-clip: text;
-  -webkit-background-clip: text;
-  text-transform: uppercase;
-  font-size: 120px;
-}
-
-.slide1{
-  background: #e0e0e0;
-	height: 100vh;
-}
-
-
-.slide2 {
-  background-image: url(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHNia2RzcTJ3ejV3dmpmN3M0NHd3MXhpanB5dXFybGdydjVhdDRwbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UYBDCJjwOd9Re/giphy.gif);
-  filter: grayscale(100%);
-  color: white; /* Ensure text is visible on a dark background */
-  cursor: url('http://www.rw-designer.com/cursor-view/30200.png'), auto;
-}
-
-.slide2 .intro-text {
-  font-size: 2rem; /* Adjust based on your preference */
-}
-
-.slide2 .descriptor {
-  position: absolute;
-  font-size: 2vw; /* Responsive font size */
-  font-weight: bold;
-  transform: translate(-50%, -50%); /* Centers the text */
-}
-
-.slide2 .vertical {
-  transform: translate(-50%, -50%) rotate(-90deg); /* Rotates text 90 degrees counter-clockwise */
-}
-
-@keyframes jitter {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(5px, 5px); }
-  50% { transform: translate(0, 0); }
-  75% { transform: translate(-5px, -5px); }
-  100% { transform: translate(0, 0); }
-}
-@keyframes jitter2 {
-  100% { transform: translate(0, 0); }
-  75% { transform: translate(5px, 5px); }
-  50% { transform: translate(0, 0); }
-  25% { transform: translate(-5px, -5px); }
-  0% { transform: translate(0, 0); }
-}
-/* Example positions, you will need to adjust these */
-.slide2 .programmer {   animation: jitter 5s infinite alternate ease-in-out;
-top: 10%; left: 20%; }
-.slide2 .developer {  animation: jitter2 5s infinite alternate ease-in-out;
- top: 30%; left: 20%; }
-.slide2 .front-end {  animation: jitter 5s infinite alternate ease-in-out;
- top: 70%; left: 30%; }
-.slide2 .artist {  animation: jitter2 5s infinite alternate ease-in-out;
- top: 10%; left: 70%; }
-.slide2 .designer {  animation: jitter 5s infinite alternate ease-in-out;
- top: 30%; left: 80%; }
-.slide2 .music {  animation: jitter2 5s infinite alternate ease-in-out;
- top: 70%; left: 60%; }
-.slide2 .explorer {  animation: jitter 5s infinite alternate ease-in-out;
- top: 50%; left: 70%; }
-.slide2 .food {  animation: jitter 5s infinite alternate ease-in-out;
- top: 50%; left: 15%; }
-.slide2 .geek {  animation: jitter2 5s infinite alternate ease-in-out;
- top: 20%; left: 60%; }
- .slide2 .graduate {  animation: jitter2 5s infinite alternate ease-in-out;
-  top: 70%; left: 5%; }
-
-  .slide2 .descriptor:hover {
-    animation-play-state: paused;
-  }
-
-  .descriptor {
-    position: absolute;
-    padding: 10px;
-    cursor: pointer;
-  }
-
-  .descriptor:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
-
-.descriptor:hover span {
-  visibility: hidden;
+.goal{
+  position: relative;
+  color: #111;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 100;
+  line-height: normal;
+  letter-spacing: -1.1px;
+  width: 675px;
+  height: 154px;
+  flex-shrink: 0;
+  top: 840px;
+  left: 120px;
   opacity: 0;
 }
 
-.tooltip {
-  visibility: hidden;
-  font-weight: lighter;
-  font-family: monospace;
-  opacity: 0;
-  position: relative;
-  background: black;
-  font-size: 16px;
-  color: white;
-  padding: 14px;
-  border-radius: 5px;
-  border: 1px solid white; /* White border */
-  white-space: normal;
-  max-width: 400px !important;
-  width: auto !important;
-  transition: opacity 0.5s;
-  z-index: 1;
-  transform: translateX(-50%);
-}
-
-.tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: -10px; /* Adjust if needed */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #333 transparent transparent transparent;
-}
-
-.programmer .tooltip { top: -40px; left: 35%; }
-.developer .tooltip { top: -40px; left: 35%; }
-.front-end .tooltip { top: -40px; left: 35%; }
-.artist .tooltip { top: -40px; left: 35%; }
-.designer .tooltip { top: -40px; left: 35%; }
-.music .tooltip { top: -40px; left: 35%; }
-.explorer .tooltip { top: -40px; left: 35%; }
-.food .tooltip { top: -40px; left: 35%; }
-.geek .tooltip { top: -40px; left: 15%; }
-.graduate .tooltip { top: -40px; left: 35%; }
-/* Add more for each descriptor */
-
-
-.slide3{
-  background-color: #e0e0e0;
-  background-size: cover; /* Stretch the background image to cover the entire element */
-  background-position: center; /* Center the background image */
-  position: relative; /* This ensures the poster-image can be positioned absolutely relative to this container */
-}
-
-.slide3 .descriptor {
-  position: absolute;
-  font-size: 2vw; /* Responsive font size */
-  font-weight: bold;
-  font-family: monospace;
-  transform: translate(-300%, 130%); /* Centers the text */
-  color: #2A2A2A;
-
-}
-
-.project-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Adjust the gap between cards */
-  justify-content: center;
-  align-items: center;
-}
-
-.project-card {
-  position: relative;
-  width: 200px; /* Square card dimensions */
-  height: 200px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background: #F1F1F1;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+.bulletpoints h1 {
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.bulletpoints h1:hover {
+  color: #888;
+  text-decoration: none;
+}
+
+.bulletpoints{
+  font-family: 'Italiana';
+  position: relative;
+  color: #111;
+  font-size: 25px;
+  font-weight: 300;
+  top: 850px;
+  left: 120px;
+  opacity: 0;
+}
+
+.info-box {
+  position: absolute;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  background-color: #fffdfa;     /* Slight off-white like paper */
+  border: 1.5px solid #2e2e2e;
+  border-radius: 0px;            /* Sharp corners like a column */
+  padding: 40px;
+  box-shadow: 0 0 0 1px #ccc inset, 8px 8px 24px rgba(0, 0, 0, 0.05); /* subtle inset print lines */
+  height: 500px;
+  width: 700px;
+  box-sizing: border-box;
+  font-size: 17px;
+  color: #222;
+  letter-spacing: 0.2px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateX(100px);
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  left: 800px;
+  top: -150px;
+}
+
+
+.info-box.show {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.tag-card {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  align-items: flex-end;
+}
+
+
+.project-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.project-tag .title {
+  font-family: 'Italiana';
+  font-size: 40px;
+  font-weight: bold;
+  color: #111;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.title:hover {
+  color: #888;
+  text-decoration: none;
+}
+
+.project-tag .desc {
+  font-family: 'Lato';
+  font-size: 13px;
+  color: #444;
+}
+
+.about-text {
+  line-height: 1.7;
+  color: #111;
+  max-width: 600px;
   text-align: center;
 }
 
-.project-card:hover {
-  width: 400px; /* Expanded width */
-  height: 400px; /* Allow height to expand */
+.about-text p {
+  margin-bottom: 16px;
 }
 
-.project-info {
-  padding: 10px;
-  transition: opacity 0.3s ease;
-  color: #2A2A2A;
+#aboutBox {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.project-info h3 {
-  margin: 0 0 10px;
-  font-size: 1.2rem;
-  font-family: monospace;
-  color: #2A2A2A;
+#contactBox {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons iconify-icon {
+  color: #111;
+  opacity: 0.85;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
 }
 
 
-.project-info .full-description {
-  display: none;
+.social-icons iconify-icon:hover {
+  transform: scale(1.1);
+  opacity: 1;
 }
 
-.project-card:hover .project-info .full-description {
-  display: block;
+
+.highlight {
+  background-color: #fff4b8;
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
-.project-card:hover .project-info h3 {
-  display: none;
+.discord-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
-.full-description img {
-  margin-left: 10px; /* Adjusts spacing between the text and the image */
-  vertical-align: middle; /* Aligns the image with the text */
+.discord-username {
+  position: absolute;
+  left: 42px; /* slightly to the right of the icon */
+  opacity: 0;
+  white-space: nowrap;
+  color: #111;
+  font-size: 15px;
+  font-family: 'Lato', sans-serif;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+
+/* Show on hover */
+.discord-wrapper:hover .discord-username {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(5px);
+  }
+  60% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes dropFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(40%, 80%); /* Start from higher up */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(40%, 100%);
+  }
 }
