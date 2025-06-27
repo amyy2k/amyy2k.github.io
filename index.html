@@ -1,144 +1,2255 @@
 <!DOCTYPE html>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amy Nguyen - Portfolio</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amy Nguyen - Portfolio Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        html {
+            scroll-behavior: smooth;
+            background: #1c1f2b;
+        }
+
+        :root {
+            --dark-teal: #2b2525;
+            --soft-blue: #83adb5;
+            --lavender: #c7bbc9;
+            --plum: #5e3c58;
+            --warm-gray: #bfb5b2;
+            --cream: #f5f5f5;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --text-white: #ffffff;
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.6);
+        }
+
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1c1f2b 0%, #121826 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        /* Main Home Section */
+        .home-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            background: linear-gradient(135deg, #1c1f2b 0%, #121826 100%);
+        }
+
+        /* Background Animation */
+        .background-vinyl {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle at 30% 30%, var(--plum), transparent);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: spin 60s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin: 0;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1c1f2b 0%, #121826 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+        }
+
+        .loading-screen.hidden {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loading-notes {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            height: 120px;
+        }
+
+        .music-note {
+            font-size: 2.5rem;
+            color: var(--soft-blue);
+            animation: float 2s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .music-note:nth-child(1) {
+            animation-delay: 0s;
+            color: var(--soft-blue);
+        }
+
+        .music-note:nth-child(2) {
+            animation-delay: 0.3s;
+            color: var(--lavender);
+        }
+
+        .music-note:nth-child(3) {
+            animation-delay: 0.6s;
+            color: var(--plum);
+        }
+
+        .music-note:nth-child(4) {
+            animation-delay: 0.9s;
+            color: var(--soft-blue);
+        }
+
+        .music-note:nth-child(5) {
+            animation-delay: 1.2s;
+            color: var(--lavender);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-30px) rotate(0deg);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translateY(-15px) rotate(-5deg);
+                opacity: 1;
+            }
+        }
+
+        .loading-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInFromBottom 1.2s ease-out 0.5s forwards;
+        }
+
+        .loading-subtext {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInFromBottom 1.2s ease-out 0.8s forwards;
+            margin-bottom: 30px;
+        }
+
+        @keyframes fadeInFromBottom {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content Animation */
+        .main-content {
+            opacity: 1;
+        }
+
+        .main-content.loading {
+            opacity: 0;
+        }
+
+        .main-content.fade-in {
+            opacity: 1;
+            transition: opacity 1.2s ease-in;
+        }
+
+        /* Tech Stack Indicator */
+        .tech-stack-indicator {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: transparent;
+            border-radius: 15px;
+            padding: 0;
+            z-index: 10;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            transform: rotate(2deg);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .tech-stack-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            text-align: right;
+            margin-bottom: 5px;
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .tech-stack-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--soft-blue), transparent);
+            opacity: 0.5;
+        }
+
+        .tech-codes {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 3px;
+        }
+
+        .tech-code {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            background: transparent;
+            padding: 0;
+            border: none;
+            transition: all 0.2s ease;
+            opacity: 0.6;
+            text-align: right;
+        }
+
+        /* Signature */
+        .signature {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            z-index: 999;
+            pointer-events: none;
+            transform: rotate(-2deg);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .signature.hidden {
+            opacity: 0;
+            transform: rotate(-2deg) translateY(20px);
+        }
+
+        .signature-text {
+            position: relative;
+        }
+
+        .signature-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--soft-blue), transparent);
+            opacity: 0.5;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--soft-blue), var(--plum));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(131, 173, 181, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(131, 173, 181, 0.5);
+        }
+
+        /* Playlist Label */
+        .playlist-label {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: transparent;
+            border-radius: 25px;
+            padding: 12px 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .playlist-label.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .playlist-label-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .playlist-label-subtitle {
+            display: none;
+        }
+
+        /* Main Container */
+        .app-container {
+            width: 100%;
+            max-width: 1200px;
+            max-height: 90vh;
+            display: flex;
+            gap: 20px;
+            background: rgba(46, 64, 69, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .player-container {
+            flex: 1;
+            background: linear-gradient(145deg, rgba(46, 64, 69, 0.95), rgba(94, 60, 88, 0.95));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(131, 173, 181, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Album Art & Track Info Section */
+        .album-section {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .album-art {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--soft-blue), var(--plum));
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .album-art:hover {
+            transform: scale(1.05);
+        }
+
+        .album-art::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+        }
+
+        .album-art::after {
+            content: 'AMY';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 3px;
+        }
+
+        .album-art.project-preview::before,
+        .album-art.project-preview::after {
+            display: none;
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .album-art:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        .track-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .now-playing {
+            font-family: 'Outfit', sans-serif;
+            color: var(--soft-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .track-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .track-artist {
+            font-size: 1rem;
+            color: var(--lavender);
+            margin-bottom: 20px;
+        }
+
+        .track-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            height: 140px;
+            overflow-y: auto;
+            padding-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Visualizer */
+        .visualizer {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            margin: 20px 0;
+        }
+
+        .bar {
+            width: 3px;
+            background: linear-gradient(to top, var(--plum), var(--soft-blue), var(--lavender));
+            border-radius: 2px;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        .bar:nth-child(1) { animation-delay: 0s; height: 15px; }
+        .bar:nth-child(2) { animation-delay: 0.1s; height: 25px; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 35px; }
+        .bar:nth-child(4) { animation-delay: 0.3s; height: 20px; }
+        .bar:nth-child(5) { animation-delay: 0.4s; height: 40px; }
+        .bar:nth-child(6) { animation-delay: 0.5s; height: 18px; }
+        .bar:nth-child(7) { animation-delay: 0.6s; height: 30px; }
+        .bar:nth-child(8) { animation-delay: 0.7s; height: 25px; }
+        .bar:nth-child(9) { animation-delay: 0.8s; height: 35px; }
+        .bar:nth-child(10) { animation-delay: 0.9s; height: 22px; }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scaleY(0.5);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: rgba(191, 181, 178, 0.2);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--soft-blue), var(--lavender));
+            border-radius: 3px;
+            width: 0%;
+            position: relative;
+            transition: width 0.1s ease;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--lavender);
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .time-stamps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+            color: var(--soft-blue);
+        }
+
+        .control-btn.small {
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        .control-btn.small:hover {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--soft-blue), var(--plum));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(131, 173, 181, 0.3);
+        }
+
+        .play-btn:hover {
+            box-shadow: 0 8px 30px rgba(131, 173, 181, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 350px;
+            background: rgba(46, 64, 69, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(131, 173, 181, 0.3);
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+        }
+
+        .playlist-selector {
+            display: flex;
+            margin-bottom: 20px;
+            background: rgba(191, 181, 178, 0.1);
+            border-radius: 12px;
+            padding: 4px;
+        }
+
+        .playlist-tab {
+            font-family: 'Outfit', sans-serif;
+            flex: 1;
+            padding: 12px 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .playlist-tab:hover {
+            color: var(--text-light);
+            background: rgba(131, 173, 181, 0.1);
+        }
+
+        .playlist-tab.active {
+            background: linear-gradient(135deg, var(--soft-blue), var(--plum));
+            color: var(--text-white);
+            box-shadow: 0 2px 10px rgba(131, 173, 181, 0.3);
+        }
+
+        /* Tracks Label */
+        .tracks-header {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(131, 173, 181, 0.2);
+        }
+
+        .tracks-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--soft-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .tracks-count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .playlist-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(191, 181, 178, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .track-item:hover {
+            background: rgba(131, 173, 181, 0.15);
+            transform: translateX(5px);
+        }
+
+        .track-item.active {
+            background: rgba(131, 173, 181, 0.25);
+            border-left: 3px solid var(--soft-blue);
+        }
+
+        .track-number {
+            width: 25px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .track-item.active .track-number {
+            color: var(--soft-blue);
+            font-weight: bold;
+        }
+
+        .track-details {
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .track-name {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 2px;
+            font-size: 0.9rem;
+        }
+
+        .track-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .track-duration {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Contact Footer */
+        .contact-footer {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(191, 181, 178, 0.2);
+        }
+
+        .contact-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .contact-link:hover {
+            color: var(--soft-blue);
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Detail Sections - Improved Layout */
+        .detail-section {
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .detail-section.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .detail-content {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+        }
+
+        .detail-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--text-white);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--soft-blue), var(--lavender));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .detail-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            color: var(--lavender);
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .detail-image {
+            width: 100%;
+            max-width: 500px;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            margin: 20px auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(131, 173, 181, 0.3);
+        }
+
+        .detail-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .tech-item {
+            font-family: 'Outfit', sans-serif;
+            padding: 8px 16px;
+            background: rgba(131, 173, 181, 0.2);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: var(--soft-blue);
+            border: 1px solid rgba(131, 173, 181, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background: rgba(131, 173, 181, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Mini Player with Tabs on Top */
+        .mini-player-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(100px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .mini-player-container.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mini-playlist-tabs {
+            display: flex;
+            margin-bottom: 8px;
+            background: rgba(46, 64, 69, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 4px;
+            border: 1px solid rgba(131, 173, 181, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .mini-playlist-tab {
+            font-family: 'Outfit', sans-serif;
+            flex: 1;
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .mini-playlist-tab:hover {
+            color: var(--text-light);
+            background: rgba(131, 173, 181, 0.1);
+        }
+
+        .mini-playlist-tab.active {
+            background: linear-gradient(135deg, var(--soft-blue), var(--plum));
+            color: var(--text-white);
+        }
+
+        .mini-player {
+            width: 380px;
+            height: 80px;
+            background: linear-gradient(145deg, rgba(46, 64, 69, 0.95), rgba(94, 60, 88, 0.95));
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 10px 20px;
+            border: 1px solid rgba(131, 173, 181, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mini-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .mini-home-btn {
+            background: rgba(131, 173, 181, 0.3);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+        }
+
+        .mini-home-btn:hover {
+            background: rgba(131, 173, 181, 0.5);
+            transform: scale(1.05);
+        }
+
+        .mini-album-art {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--soft-blue), var(--plum));
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .mini-track-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .mini-track-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .mini-track-artist {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .mini-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .mini-control-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            padding: 6px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mini-control-btn:hover {
+            transform: scale(1.1);
+            color: var(--soft-blue);
+            background: rgba(131, 173, 181, 0.1);
+        }
+
+        .mini-play-btn {
+            background: linear-gradient(135deg, var(--soft-blue), var(--plum));
+            width: 35px;
+            height: 35px;
+        }
+
+        .mini-play-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, var(--lavender), var(--soft-blue));
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .loading-text {
+                font-size: 1.2rem;
+            }
+
+            .loading-subtext {
+                font-size: 0.8rem;
+            }
+
+            .music-note {
+                font-size: 2rem;
+            }
+
+            .loading-notes {
+                gap: 15px;
+                height: 100px;
+            }
+
+            .app-container {
+                flex-direction: column;
+                max-height: none;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 300px;
+            }
+
+            .album-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .album-art {
+                width: 150px;
+                height: 150px;
+            }
+
+            .detail-title {
+                font-size: 2rem;
+            }
+
+            .detail-section {
+                padding: 20px;
+            }
+
+            .detail-image {
+                height: 150px;
+                max-width: 100%;
+            }
+
+            .tech-stack-indicator {
+                top: 20px;
+                right: 20px;
+            }
+
+            .tech-stack-title {
+                font-size: 0.8rem;
+                margin-bottom: 4px;
+            }
+
+            .tech-code {
+                font-size: 0.65rem;
+            }
+
+            .signature {
+                bottom: 20px;
+                right: 20px;
+                font-size: 0.8rem;
+            }
+
+            .playlist-label {
+                top: 20px;
+                left: 20px;
+                padding: 10px 16px;
+            }
+
+            .playlist-label-text {
+                font-size: 1rem;
+            }
+
+            .mini-player-container {
+                right: 20px;
+                left: 20px;
+                right: 20px;
+            }
+
+            .mini-playlist-tabs {
+                margin-bottom: 6px;
+            }
+
+            .mini-player {
+                width: 100%;
+                height: 70px;
+                padding: 8px 15px;
+            }
+
+            .mini-album-art {
+                width: 40px;
+                height: 40px;
+            }
+
+            .mini-track-title {
+                font-size: 0.8rem;
+            }
+
+            .mini-track-artist {
+                font-size: 0.65rem;
+            }
+
+            .mini-control-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+
+            .mini-play-btn {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .loading-text {
+                font-size: 1.1rem;
+            }
+
+            .loading-subtext {
+                font-size: 0.75rem;
+            }
+
+            .music-note {
+                font-size: 1.8rem;
+            }
+
+            .loading-notes {
+                gap: 12px;
+                height: 80px;
+            }
+
+            .detail-section {
+                padding: 15px;
+            }
+
+            .detail-title {
+                font-size: 1.8rem;
+            }
+
+            .detail-description {
+                font-size: 0.9rem;
+            }
+
+            .tech-stack-indicator {
+                top: 15px;
+                right: 15px;
+            }
+
+            .tech-stack-title {
+                font-size: 0.75rem;
+                margin-bottom: 3px;
+            }
+
+            .tech-code {
+                font-size: 0.6rem;
+            }
+
+            .signature {
+                bottom: 15px;
+                right: 15px;
+                font-size: 0.75rem;
+            }
+
+            .playlist-label {
+                top: 15px;
+                left: 15px;
+                padding: 8px 12px;
+            }
+
+            .playlist-label-text {
+                font-size: 0.9rem;
+            }
+
+            .mini-player {
+                height: 65px;
+                padding: 6px 12px;
+                gap: 10px;
+            }
+
+            .mini-album-art {
+                width: 35px;
+                height: 35px;
+            }
+
+            .mini-controls {
+                gap: 6px;
+            }
+
+            .mini-control-btn {
+                width: 26px;
+                height: 26px;
+                font-size: 0.75rem;
+            }
+
+            .mini-play-btn {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .playlist-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .playlist-content::-webkit-scrollbar-track {
+            background: rgba(46, 64, 69, 0.5);
+        }
+
+        .playlist-content::-webkit-scrollbar-thumb {
+            background: rgba(131, 173, 181, 0.3);
+            border-radius: 3px;
+        }
+
+        .playlist-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(131, 173, 181, 0.5);
+        }
+    </style>
 </head>
 <body>
-
-
-  <div class="flower">
-  <img src="flower-svgrepo-com.svg"/>
-</div>
-  <div class"page1">
-        <div class="welcome">
-            <p><b>welcome to my portfolio.</b></p>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-notes">
+            <div class="music-note">♪</div>
+            <div class="music-note">♫</div>
+            <div class="music-note">♬</div>
+            <div class="music-note">♩</div>
+            <div class="music-note">♯</div>
         </div>
-        <div class="scroll-down-arrow">
-          <span>↓</span>
+        <div class="loading-text" id="loadingText">Welcome to My Portfolio</div>
+        <div class="loading-subtext" id="loadingSubtext">Amy Nguyen</div>
+    </div>
+
+    <!-- Signature -->
+    <div class="signature" id="signature">
+        <div class="signature-text">Amy Nguyen</div>
+    </div>
+
+    <!-- Playlist Label -->
+    <div class="playlist-label" id="playlistLabel">
+        <div class="playlist-label-text" id="playlistLabelText">About Me</div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <!-- Mini Player Container -->
+    <div class="mini-player-container" id="miniPlayerContainer">
+        <div class="mini-playlist-tabs">
+            <button class="mini-playlist-tab active" data-playlist="about">About Me</button>
+            <button class="mini-playlist-tab" data-playlist="projects">Projects</button>
         </div>
-  </div>
 
-  <div class"page2">
-      <div class="frame">
+        <div class="mini-player" id="miniPlayer">
+            <div class="mini-album-art" id="miniAlbumArt"></div>
 
-        <div class="fullName">
-
-        <div class="firstName">
-            <p>AMY</p>
-            <div class="line top-line"></div>
-            <div class="line left-line"></div>
-        </div>
-        <div class="lastName">
-            <p>NGUYEN</p>
-            <div class="line right-line"></div>
-            <div class="line bottom-line"></div>
-        </div>
-      </div>
-      <div class="goal">
-        <p>Humanity thrives on free will and creativity, enabling us to innovate across various facets of life. As technology advances, so do our artistic expressions. Art consistently finds a way to evolve, regardless of the era. As a recent graduate, I channel this growth through my work in website and mobile design.</p>
-      </div>
-      <div class="bulletpoints">
-        <h1>• about me </h1>
-        <h1>• projects </h1>
-        <h1>• contact </h1>
-        <div class="info-box" id="aboutBox">
-  <p>Computer Science graduate from Cal State Fullerton — where logic met creativity. I merge code with design to bring imaginative ideas to life.</p>
-
-  <p>As a second-generation Vietnamese American in Orange County, my roots shape my creative lens — from concept to execution.</p>
-
-  <p>When I'm not building or debugging, you'll find me modeling 3D assets, immersing myself in video games, going to live concerts, or mastering my culinary.</p>
-
-  <p>Each passion feeds my perspective — and I bring that into every project I touch. Always open to collaborate, connect, and create.</p></div>
-        <div class="info-box" id="projectsBox"><div class="tag-card">
-          <div class="project-tag">
-            <a class="title" href="https://github.com/amyy2k/FoodDeli" target="_blank">FoodDeli</a>
-            <span class="desc">iOS | Swift | Apple | Food Delivery</span>
-          </div>
-
-          <div class="project-tag">
-            <a class="title" href="https://github.com/amyy2k/RasberryPiMusicMixer" target="_blank">Music Mixer</a>
-            <span class="desc">Raspberry Pi | Python | Engineering | Writing | Music</span>
-          </div>
-
-          <div class="project-tag">
-            <a class="title" href="https://csufgroup1.atlassian.net/jira/software/projects/CSUF/boards/1/backlog?selectedIssue=CSUF-2" target="_blank">Vending Machine</a>
-            <span class="desc">Database | Inventory | Sales | MySQL | SQLite | Python</span>
-          </div>
-
-          <div class="project-tag">
-            <a class="title" href="https://www.youtube.com/watch?v=vB2MRkpjnQY" target="_blank">Zombie Shooter</a>
-            <span class="desc">Roblox | Game | Lua | Score System | UI | Menu</span>
-          </div>
-
-          <div class="project-tag">
-            <a class="title" href="https://example.com/3d-models" target="_blank">3D Models</a>
-            <span class="desc">Blender | Unity | Fashion | Rigging | Weight Painting</span>
-          </div>
-
-</div>
-</div>
-        <div class="info-box" id="contactBox">I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-          <p>Feel free to reach out through any of the following ways: <p><span class="highlight">amyqanguyen@gmail.com</span> ❤ </p></p>
-
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/in/amy-nguyen-355205206/" target="_blank" aria-label="LinkedIn">
-              <iconify-icon icon="mdi:linkedin" width="32" height="32"></iconify-icon>
-            </a>
-            <a href="https://github.com/amyy2k" target="_blank" aria-label="GitHub">
-              <iconify-icon icon="mdi:github" width="32" height="32"></iconify-icon>
-            </a>
-            <a href="https://www.instagram.com/q.a.m.y/" target="_blank" aria-label="Instagram">
-              <iconify-icon icon="mdi:instagram" width="32" height="32"></iconify-icon>
-            </a>
-            <a href="https://x.com/hanloda" target="_blank" aria-label="Twitter">
-              <iconify-icon icon="mdi:twitter" width="32" height="32"></iconify-icon>
-            </a>
-            <div class="discord-wrapper">
-              <span aria-label="Discord">
-                <iconify-icon icon="ic:baseline-discord" width="32" height="32"></iconify-icon>
-              </span>
-              <span class="discord-username">@hanloda</span>
+            <div class="mini-track-info">
+                <div class="mini-track-title" id="miniTrackTitle">Welcome to My Portfolio</div>
+                <div class="mini-track-artist" id="miniTrackArtist">Select something to begin exploring</div>
             </div>
 
+            <div class="mini-controls">
+                <button class="mini-control-btn mini-home-btn" id="miniHomeBtn" title="Home">🏠︎</button>
+                <button class="mini-control-btn" id="miniPrevBtn" title="Previous">⏮</button>
+                <button class="mini-control-btn mini-play-btn" id="miniPlayBtn" title="Play/Pause">▶</button>
+                <button class="mini-control-btn" id="miniNextBtn" title="Next">⏭</button>
+            </div>
+        </div>
+    </div>
 
-          </div>
+    <!-- Tech Stack Indicator -->
+    <div class="tech-stack-indicator">
+        <div class="tech-stack-title">Built with</div>
+        <div class="tech-codes">
+            <span class="tech-code">HTML5</span>
+            <span class="tech-code">CSS3</span>
+            <span class="tech-code">JavaScript</span>
+            <span class="tech-code">Love</span>
+        </div>
+    </div>
 
+    <!-- Signature -->
+    <div class="signature" id="signature">
+        <div class="signature-text">Amy Nguyen</div>
+    </div>
 
- </div>
-      </div>
+    <!-- Playlist Label -->
+    <div class="playlist-label" id="playlistLabel">
+        <div class="playlist-label-text" id="playlistLabelText">About Me</div>
+    </div>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
 
-      </div>
-  </div>
+    <!-- Mini Player Container -->
+    <div class="mini-player-container" id="miniPlayerContainer">
+        <div class="mini-playlist-tabs">
+            <button class="mini-playlist-tab active" data-playlist="about">About Me</button>
+            <button class="mini-playlist-tab" data-playlist="projects">Projects</button>
+            <button class="mini-home-tab" id="miniHomeBtn" title="Home">🏠</button>
+        </div>
 
+        <div class="mini-player" id="miniPlayer">
+            <div class="mini-album-art" id="miniAlbumArt"></div>
 
+            <div class="mini-track-info">
+                <div class="mini-track-title" id="miniTrackTitle">Welcome to My Portfolio</div>
+                <div class="mini-track-artist" id="miniTrackArtist">Select something to begin exploring</div>
+            </div>
 
-<script src="script.js"></script>
+            <div class="mini-controls">
+                <button class="mini-control-btn" id="miniPrevBtn" title="Previous">⏮</button>
+                <button class="mini-control-btn mini-play-btn" id="miniPlayBtn" title="Play/Pause">▶</button>
+                <button class="mini-control-btn" id="miniNextBtn" title="Next">⏭</button>
+            </div>
+        </div>
+    </div>
 
-<script>
-  function showBox(id) {
-    const boxes = document.querySelectorAll('.info-box');
-    boxes.forEach(box => box.classList.remove('show'));
-    document.getElementById(id).classList.add('show');
-  }
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Home Section -->
+    <div class="home-section" id="home">
+        <div class="background-vinyl"></div>
 
-  // Hook up the clicks
-  document.querySelector('.bulletpoints h1:nth-child(1)').onclick = () => showBox('aboutBox');
-  document.querySelector('.bulletpoints h1:nth-child(2)').onclick = () => showBox('projectsBox');
-  document.querySelector('.bulletpoints h1:nth-child(3)').onclick = () => showBox('contactBox');
-</script>
+        <div class="app-container">
+            <!-- Main Player -->
+            <div class="player-container">
+                <!-- Album Section -->
+                <div class="album-section">
+                    <div class="album-art" id="albumArt">
+                        <div class="project-overlay" id="projectOverlay">
+                            <h3 id="overlayTitle">Learn More</h3>
+                            <p id="overlayTech">Click to explore</p>
+                        </div>
+                    </div>
+                    <div class="track-info">
+                        <div class="now-playing" id="nowPlaying">NOW PLAYING</div>
+                        <h1 class="track-title" id="currentTrack">Welcome to My Portfolio</h1>
+                        <div class="track-artist" id="trackArtist">Select something to begin exploring</div>
+                        <p class="track-description" id="trackDescription">
+                            Discover my journey through code, creativity, and innovation. Each section represents a unique aspect of who I am and what I create, showcasing different technologies and approaches to problem-solving.
+                        </p>
+                    </div>
+                </div>
 
+                <!-- Visualizer -->
+                <div class="visualizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
 
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                    <div class="time-stamps">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">0:00</span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <button class="control-btn small" title="Shuffle">⤮</button>
+                    <button class="control-btn small" id="prevBtn" title="Previous">⏮</button>
+                    <button class="control-btn play-btn" id="playBtn" title="Play/Pause">▶</button>
+                    <button class="control-btn small" id="nextBtn" title="Next">⏭</button>
+                    <button class="control-btn small" title="Repeat">↻</button>
+                </div>
+
+                <!-- Contact Footer -->
+                <div class="contact-footer">
+                    <a href="mailto:amyqanguyen@gmail.com" class="contact-link" title="Email">
+                      <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email" width="24" height="24">
+                    </a>
+                    <a href="https://github.com/amyy2k" target="_blank" class="contact-link" title="GitHub">
+                        <img src="https://img.icons8.com/ios-glyphs/50/ffffff/github.png" alt="GitHub" width="24" height="24">
+                    </a>
+                    <a href="https://twitter.com/YOUR_USERNAME" target="_blank" class="contact-link" title="Twitter">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter" width="24" height="24">
+                    </a>
+                    <a href="https://instagram.com/YOUR_USERNAME" target="_blank" class="contact-link" title="Instagram">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram" width="24" height="24">
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="playlist-selector">
+                    <button class="playlist-tab active" data-playlist="about">About Me</button>
+                    <button class="playlist-tab" data-playlist="projects">Projects</button>
+                </div>
+
+                <!-- Tracks Header -->
+                <div class="tracks-header">
+                    <div class="tracks-title" id="tracksTitle">Tracks</div>
+                    <div class="tracks-count" id="tracksCount">5 tracks</div>
+                </div>
+
+                <div class="playlist-content">
+                    <!-- Tracks will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Sections for About Me -->
+    <div class="detail-section" id="detail-about-0">
+        <div class="detail-content">
+            <h1 class="detail-title">Who am I</h1>
+            <p class="detail-subtitle">Personal Introduction • Background</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg1\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23667eea;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23764ba2;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg1)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E👋%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'36\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EHello, I\'m Amy%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                Hello! My name is Amy Nguyen. I am an aspiring developer and wish to hone my skills into my career path. I graduated with a Bachelor's of Computer Science from California State University Fullerton. I enjoy playing video games, jamming to music, gyming, and creating mini projects.
+                Showcased here are my projects I have created; they range from mobile applications to 3D modeling for video games. Despite having a variety of projects, I want to pursue a stronger field in web development.
+            </p>
+            <p>
+              If you are interested in collaborating, feel free to contact me!
+            </p>
+            <div class="contact-footer">
+                <a href="mailto:amyqanguyen@gmail.com" class="contact-link" title="Email">
+                  <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email" width="24" height="24">
+                </a>
+                <a href="https://github.com/amyy2k" target="_blank" class="contact-link" title="GitHub">
+                    <img src="https://img.icons8.com/ios-glyphs/50/ffffff/github.png" alt="GitHub" width="24" height="24">
+                </a>
+                <a href="https://twitter.com/YOUR_USERNAME" target="_blank" class="contact-link" title="Twitter">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter" width="24" height="24">
+                </a>
+                <a href="https://instagram.com/YOUR_USERNAME" target="_blank" class="contact-link" title="Instagram">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram" width="24" height="24">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-about-1">
+        <div class="detail-content">
+            <h1 class="detail-title">My Skills</h1>
+            <p class="detail-subtitle">Technical Expertise • Programming</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg2\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%234a9eff;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%238b5cf6;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg2)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E💻%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3ETechnical Skills%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                I've developed a diverse skill set that spans across multiple domains of software development. My programming languages include Swift for iOS development, Python for backend and data analysis, JavaScript for interactive web experiences, and SQL for database management. In terms of frameworks and tools, I'm experienced with SwiftUI for creating beautiful iOS interfaces, Three.js for immersive 3D web graphics, React for dynamic user interfaces, and various database systems for robust data management. What sets me apart is my ability to combine technical proficiency with creative vision. I don't just write code - I craft experiences that engage users and solve meaningful problems.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">Swift</div>
+                <div class="tech-item">Python</div>
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">SwiftUI</div>
+                <div class="tech-item">Three.js</div>
+                <div class="tech-item">React</div>
+                <div class="tech-item">SQL</div>
+                <div class="tech-item">Blender</div>
+                <div class="tech-item">Unity</div>
+                <div class="tech-item">HTML/CSS</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-about-2">
+        <div class="detail-content">
+            <h1 class="detail-title">My Interests</h1>
+            <p class="detail-subtitle">Hobbies • Passions • Inspiration</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg3\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23FF6B35;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23F7931E;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg3)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E🎨%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3ECreative Spirit%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                Beyond the world of coding, I'm deeply passionate about creative technology and artistic expression. Music production is one of my biggest interests - I love creating soundscapes and experimenting with audio visualization techniques that bring music to life in visual form. I'm fascinated by 3D art and spend considerable time exploring tools like Blender to create digital sculptures and environments. The intersection of art and technology excites me, especially in emerging fields like virtual and augmented reality where I can create immersive experiences that engage multiple senses. Music plays a huge role in my creative process and I believe that the best technology solutions often come from approaching problems with an artist's eye.
+            </p>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-about-3">
+        <div class="detail-content">
+            <h1 class="detail-title">My Experience</h1>
+            <p class="detail-subtitle">Work • Projects • Learning Journey</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg4\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2311998e;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2338ef7d;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg4)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E🚀%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EGrowing Daily%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                Through various projects and coursework, I've gained hands-on experience across the full spectrum of software development. From building iOS applications that solve real-world problems to creating immersive web experiences with 3D graphics, each project has contributed to my growth as a developer. My experience spans full-stack development, mobile app creation, database management, and creative technology. I've worked on everything from food delivery applications to audio visualizers, each teaching me valuable lessons about problem-solving, user experience design, and the critical importance of writing clean, maintainable code. What I've learned most is that great software isn't just about technical excellence - it's about understanding users and creating solutions that feel intuitive and delightful to use.
+            </p>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-about-4">
+        <div class="detail-content">
+            <h1 class="detail-title">My Goals</h1>
+            <p class="detail-subtitle">Aspirations • Future Vision • Dreams</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg5\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23FC466B;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%233F5EFB;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg5)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E⭐%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EDream Big%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                My aspiration is to work at the intersection of technology and creativity, developing applications that don't just solve problems but also inspire and delight users. I want to contribute to meaningful projects that have a positive impact on people's lives and help bridge the digital divide. I'm particularly interested in mobile development and creative technology, with a focus on building inclusive digital experiences that work for everyone. I believe the future of technology lies in making complex systems more human, more intuitive, and more accessible. Long-term, I see myself leading teams that push the boundaries of what's possible with technology while never losing sight of the human element.
+            </p>
+        </div>
+    </div>
+
+    <!-- Detail Sections for Projects -->
+    <div class="detail-section" id="detail-projects-0">
+        <div class="detail-content">
+            <h1 class="detail-title">Food Deli iOS App</h1>
+            <p class="detail-subtitle">iOS Development • Swift & SwiftUI</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj1\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23FF6B35;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23F7931E;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj1)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'100\' fill=\'white\' text-anchor=\'middle\'%3E🍎%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'32\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EFood Deli App%3C/text%3E%3Ctext x=\'300\' y=\'240\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EiOS Application%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                A comprehensive food delivery application built from the ground up using Swift and SwiftUI. This project showcases modern iOS development practices with a focus on creating an intuitive and visually appealing user experience. The app features real-time order tracking that keeps users informed throughout their delivery journey, secure user authentication to protect personal information, an elegant restaurant browsing interface that makes discovery enjoyable, and seamless payment integration for a frictionless checkout experience. Built with performance optimization in mind, the app demonstrates advanced iOS patterns including MVVM architecture, Combine framework for reactive programming, and custom animations that bring the interface to life.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">Swift</div>
+                <div class="tech-item">SwiftUI</div>
+                <div class="tech-item">Combine</div>
+                <div class="tech-item">Core Data</div>
+                <div class="tech-item">MapKit</div>
+                <div class="tech-item">Payment APIs</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-projects-1">
+        <div class="detail-content">
+            <h1 class="detail-title">Audio Visualizer</h1>
+            <p class="detail-subtitle">Web Development • Three.js & WebGL</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj2\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%234a9eff;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%238b5cf6;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj2)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'100\' fill=\'white\' text-anchor=\'middle\'%3E🎵%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EAudio Visualizer%3C/text%3E%3Ctext x=\'300\' y=\'240\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EThree.js • WebGL%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                An interactive 3D audio visualizer that transforms music into stunning visual art in real-time. This project explores the intersection of audio processing, 3D graphics, and user interaction to create an immersive multimedia experience. Built with Three.js and WebGL, the visualizer features dynamic particle systems that dance to the rhythm, responsive lighting effects that react to audio frequencies, multiple visualization modes to suit different musical styles, and customizable color schemes that allow users to personalize their experience. The technical implementation involves complex audio analysis using the Web Audio API, efficient 3D rendering optimized for smooth 60fps performance, and sophisticated shader programming to create visual effects that feel alive and responsive to the music's emotional content.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">Three.js</div>
+                <div class="tech-item">WebGL</div>
+                <div class="tech-item">Web Audio API</div>
+                <div class="tech-item">GLSL Shaders</div>
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">Canvas API</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-projects-2">
+        <div class="detail-content">
+            <h1 class="detail-title">Music Mixer Hardware</h1>
+            <p class="detail-subtitle">Hardware Programming • Raspberry Pi & Python</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj3\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2311998e;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2338ef7d;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj3)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'100\' fill=\'white\' text-anchor=\'middle\'%3E🎛%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EMusic Mixer%3C/text%3E%3Ctext x=\'300\' y=\'240\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3ERaspberry Pi%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                A custom-built music mixing station that brings the power of digital audio workstations into a tactile, hardware-based interface. This project demonstrates the integration of hardware and software to create professional-grade music production tools. The mixer features physical knobs and sliders for intuitive real-time audio manipulation, MIDI integration for seamless connectivity with existing music software, a responsive touch-screen interface for visual feedback and control, and robust audio processing capabilities perfect for live performances. Built on a Raspberry Pi foundation with custom Python software, the project showcases embedded systems programming, real-time audio processing, hardware interface design, and the challenges of creating reliable performance hardware that musicians can depend on in live settings.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">Raspberry Pi</div>
+                <div class="tech-item">Python</div>
+                <div class="tech-item">MIDI Protocol</div>
+                <div class="tech-item">Audio Processing</div>
+                <div class="tech-item">Hardware Integration</div>
+                <div class="tech-item">Real-time Systems</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-projects-3">
+        <div class="detail-content">
+            <h1 class="detail-title">Fullerton Vending Database</h1>
+            <p class="detail-subtitle">Database Management • MySQL & Python</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj4\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23FC466B;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%233F5EFB;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj4)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E🏪%3C/text%3E%3Ctext x=\'300\' y=\'190\' font-family=\'Arial\' font-size=\'24\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EFullerton Vending%3C/text%3E%3Ctext x=\'300\' y=\'220\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EDatabase System%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                A comprehensive vending machine management system designed specifically for the Cal State Fullerton campus. This project demonstrates enterprise-level database design and management for real-world operational challenges. The system provides robust inventory tracking across multiple campus locations, detailed sales analytics for business intelligence, automated maintenance scheduling to ensure optimal machine performance, and real-time reporting capabilities accessible through an intuitive web dashboard. Built with MySQL for reliable data storage and Python for backend processing, the project showcases database optimization techniques, complex query design for analytics, automated reporting systems, and the integration of multiple data sources into a unified management platform.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">MySQL</div>
+                <div class="tech-item">Python</div>
+                <div class="tech-item">Database Design</div>
+                <div class="tech-item">Data Analytics</div>
+                <div class="tech-item">Web Dashboard</div>
+                <div class="tech-item">Reporting Systems</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-projects-4">
+        <div class="detail-content">
+            <h1 class="detail-title">Hanloda's Avatar Company</h1>
+            <p class="detail-subtitle">3D Development • Blender & Unity</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj5\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23667eea;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23764ba2;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj5)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'100\' fill=\'white\' text-anchor=\'middle\'%3E🌟%3C/text%3E%3Ctext x=\'300\' y=\'190\' font-family=\'Arial\' font-size=\'22\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EHanloda\'s Avatar Company%3C/text%3E%3Ctext x=\'300\' y=\'220\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EVR Experience%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                An immersive virtual reality experience that pushes the boundaries of digital avatar creation and interactive virtual environments. This project represents the cutting edge of VR development and 3D character design. The experience features custom 3D avatars with detailed animations and expressions, interactive virtual environments that respond to user presence, physics-based interactions that feel natural and intuitive, and immersive gameplay mechanics designed specifically for virtual reality. Created using Blender for detailed 3D modeling and texturing, Unity for VR implementation and interaction systems, the project showcases advanced 3D pipeline workflows, VR UX design principles, performance optimization for immersive experiences, and the technical challenges of creating presence in virtual spaces.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">Blender</div>
+                <div class="tech-item">Unity</div>
+                <div class="tech-item">VR Development</div>
+                <div class="tech-item">3D Modeling</div>
+                <div class="tech-item">Animation</div>
+                <div class="tech-item">Physics Systems</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-projects-5">
+        <div class="detail-content">
+            <h1 class="detail-title">Adaptive Provisions Store</h1>
+            <p class="detail-subtitle">Web Development • HTML, CSS & GSAP</p>
+            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj6\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2311998e;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2338ef7d;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj6)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E🛍%3C/text%3E%3Ctext x=\'300\' y=\'190\' font-family=\'Arial\' font-size=\'22\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EAdaptive Provisions%3C/text%3E%3Ctext x=\'300\' y=\'220\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EE-commerce Store%3C/text%3E%3C/svg%3E')"></div>
+            <p class="detail-description">
+                A modern e-commerce website that demonstrates the power of thoughtful animation and interaction design in creating engaging shopping experiences. This project showcases advanced web development techniques focused on user engagement and conversion. The site features stunning animations powered by GSAP that guide users through the shopping journey, interactive product showcases that bring items to life, responsive design that works beautifully across all devices, and engaging user interactions that make shopping enjoyable rather than transactional. Built with semantic HTML for accessibility, advanced CSS for sophisticated layouts and effects, and GSAP for professional-grade animations, the project demonstrates modern web development best practices, performance optimization techniques, and the art of creating digital experiences that feel both premium and approachable.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">HTML5</div>
+                <div class="tech-item">CSS3</div>
+                <div class="tech-item">GSAP</div>
+                <div class="tech-item">Responsive Design</div>
+                <div class="tech-item">Animation</div>
+                <div class="tech-item">UX Design</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tech Stack Indicator -->
+    <div class="tech-stack-indicator">
+        <div class="tech-stack-title">Built with</div>
+        <div class="tech-codes">
+            <span class="tech-code">HTML5</span>
+            <span class="tech-code">CSS3</span>
+            <span class="tech-code">JavaScript</span>
+            <span class="tech-code">Love</span>
+        </div>
+    </div>
+
+    <!-- Signature -->
+    <div class="signature" id="signature">
+        <div class="signature-text">Amy Nguyen</div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <!-- Playlist Label -->
+    <div class="playlist-label" id="playlistLabel">
+        <div class="playlist-label-text" id="playlistLabelText">About Me</div>
+    </div>
+
+    <!-- Mini Player Container -->
+    <div class="mini-player-container" id="miniPlayerContainer">
+        <div class="mini-playlist-tabs">
+            <button class="mini-playlist-tab active" data-playlist="about">About Me</button>
+            <button class="mini-playlist-tab" data-playlist="projects">Projects</button>
+        </div>
+
+        <div class="mini-player" id="miniPlayer">
+            <div class="mini-album-art" id="miniAlbumArt"></div>
+
+            <div class="mini-track-info">
+                <div class="mini-track-title" id="miniTrackTitle">Welcome to My Portfolio</div>
+                <div class="mini-track-artist" id="miniTrackArtist">Select something to begin exploring</div>
+            </div>
+
+            <div class="mini-controls">
+                <button class="mini-control-btn mini-home-btn" id="miniHomeBtn" title="Home">🏠</button>
+                <button class="mini-control-btn" id="miniPrevBtn" title="Previous">⏮</button>
+                <button class="mini-control-btn mini-play-btn" id="miniPlayBtn" title="Play/Pause">▶</button>
+                <button class="mini-control-btn" id="miniNextBtn" title="Next">⏭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content End -->
+    </div>
+
+    <script>
+        /*
+        IMAGE FILE NAMING CONVENTION:
+
+        About Me Images:
+        - about-0.png (Who am I)
+        - about-1.png (My Skills)
+        - about-2.png (My Interests)
+        - about-3.png (My Experience)
+        - about-4.png (My Goals)
+
+        Project Images:
+        - project-0.png (Food Deli iOS App)
+        - project-1.png (Audio Visualizer)
+        - project-2.png (Music Mixer Hardware)
+        - project-3.png (Fullerton Vending Database)
+        - project-4.png (Hanloda's Avatar Company)
+        - project-5.png (Adaptive Provisions Store)
+
+        All images should be placed in the same directory as this HTML file.
+        Recommended size: 300x300px or larger for best quality.
+        */
+
+        // Project data
+        const projects = [
+            {
+                title: "Food Deli iOS App",
+                artist: "iOS Development • Swift & SwiftUI",
+                description: "A comprehensive food delivery application built with Swift and SwiftUI. Features real-time order tracking, user authentication, restaurant browsing, and seamless payment integration. Designed with a focus on user experience and performance optimization.",
+                duration: "6:24",
+                link: "https://github.com/amyy2k/food-deli-app",
+                image: "fooddeliicon.png"
+            },
+            {
+                title: "Audio Visualizer",
+                artist: "Web Development • Three.js & WebGL",
+                description: "An interactive 3D audio visualizer that responds to music in real-time. Built with Three.js and WebGL, featuring dynamic particle systems, responsive lighting effects, and multiple visualization modes with customizable color schemes.",
+                duration: "4:15",
+                link: "https://github.com/amyy2k/audio-visualizer",
+                image: "visualizer.png"
+            },
+            {
+                title: "Music Mixer Hardware",
+                artist: "Hardware Programming • Raspberry Pi & Python",
+                description: "A custom-built music mixing station using Raspberry Pi and Python. Features physical knobs and sliders for real-time audio manipulation, MIDI integration, and a responsive touch-screen interface. Perfect for live performances.",
+                duration: "3:42",
+                link: "https://github.com/amyy2k/music-mixer",
+                image: "project-2.png"
+            },
+            {
+                title: "Fullerton Vending Database",
+                artist: "Database Management • MySQL & Python",
+                description: "A comprehensive vending machine management system for CSUF campus. Built with MySQL and Python, featuring inventory tracking, sales analytics, maintenance scheduling, and real-time reporting with an intuitive web dashboard.",
+                duration: "5:30",
+                link: "https://github.com/amyy2k/fullerton-vending",
+                image: "project-3.png"
+            },
+            {
+                title: "Hanloda's Avatar Company",
+                artist: "3D Development • Blender & Unity",
+                description: "A virtual reality experience featuring custom 3D avatars and interactive environments. Built with Blender for 3D modeling and Unity for VR implementation. Includes physics-based interactions and immersive gameplay mechanics.",
+                duration: "7:18",
+                link: "https://github.com/amyy2k/hanloda-avatar",
+                image: "project-4.png"
+            },
+            {
+                title: "Adaptive Provisions Store",
+                artist: "Web Development • HTML, CSS & GSAP",
+                description: "A modern e-commerce website with stunning animations and interactive elements. Built with HTML, CSS, and GSAP for smooth animations. Features responsive design, product showcases, and engaging user interactions.",
+                duration: "4:56",
+                link: "https://github.com/amyy2k/adaptive-provisions",
+                image: "adaptiveprovisions.png"
+            }
+        ];
+
+        // About Me data
+        const aboutMe = [
+            {
+                title: "Who am I",
+                artist: "Graduate • Web Development • UX/UI • Dreamer",
+                description: "I'm Amy Nguyen, a passionate software developer and creative technologist. This portfolio showcases my strengths and creative thinking. If you would like to learn more, click on the album cover to expand!",
+                duration: "4:48",
+                link: "#about",
+                image: "Amy.png"
+            },
+            {
+                title: "My Skills",
+                artist: "Languages • Framework • Softwares",
+                description: "Proficient in Swift, Python, JavaScript, HTML/CSS, and SQL. Experienced with frameworks like SwiftUI, Three.js, React, and tools like Blender, Unity, and various databases.",
+                duration: "5:12",
+                link: "#skills",
+                image: "about-1.png"
+            },
+            {
+                title: "My Interests",
+                artist: "Hobbies • Passions • Inspiration",
+                description: "I enjoy jamming to music, playing video games, and cooking various dishes. From time to time I like to explore out of my reach for niche restaurants to try out.",
+                duration: "4:33",
+                link: "#interests",
+                image: "about-2.png"
+            },
+            {
+                title: "My Experience",
+                artist: "Work • Projects • Learning Journey",
+                description: "Although most of my time were from projects, I have been recently contracted to work on a website for a start up company.",
+                duration: "6:18",
+                link: "#experience",
+                image: "about-3.png"
+            },
+        ];
+
+        // Playlists - About Me is now the default
+        const playlists = {
+            about: {
+                title: "About Me",
+                tracks: aboutMe
+            },
+            projects: {
+                title: "Projects",
+                tracks: projects
+            }
+        };
+
+        // State - Start with About Me
+        let currentPlaylist = 'about';
+        let currentIndex = 0;
+        let isPlaying = false;
+        let currentTime = 0;
+        let totalDuration = 0;
+        let progressInterval = null;
+
+        // DOM Elements
+        const albumArt = document.getElementById('albumArt');
+        const nowPlaying = document.getElementById('nowPlaying');
+        const currentTrack = document.getElementById('currentTrack');
+        const trackArtist = document.getElementById('trackArtist');
+        const trackDescription = document.getElementById('trackDescription');
+        const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const overlayTitle = document.getElementById('overlayTitle');
+        const overlayTech = document.getElementById('overlayTech');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+        const progressBar = document.getElementById('progress');
+        const playlistContent = document.querySelector('.playlist-content');
+        const backToTopBtn = document.getElementById('backToTop');
+        const tracksTitle = document.getElementById('tracksTitle');
+        const tracksCount = document.getElementById('tracksCount');
+        const playlistLabel = document.getElementById('playlistLabel');
+        const playlistLabelText = document.getElementById('playlistLabelText');
+        const signature = document.getElementById('signature');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const mainContent = document.getElementById('mainContent');
+
+        // Mini Player Elements
+        const miniPlayerContainer = document.getElementById('miniPlayerContainer');
+        const miniPlayer = document.getElementById('miniPlayer');
+        const miniAlbumArt = document.getElementById('miniAlbumArt');
+        const miniTrackTitle = document.getElementById('miniTrackTitle');
+        const miniTrackArtist = document.getElementById('miniTrackArtist');
+        const miniPlayBtn = document.getElementById('miniPlayBtn');
+        const miniPrevBtn = document.getElementById('miniPrevBtn');
+        const miniNextBtn = document.getElementById('miniNextBtn');
+        const miniHomeBtn = document.getElementById('miniHomeBtn');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initially hide main content during loading
+            mainContent.classList.add('loading');
+
+            setupEventListeners();
+            renderPlaylist();
+            loadTrack(0);
+            setupScrollHandling();
+        });
+
+        // Loading screen sequence with fade transition
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                // Start fade out of loading screen
+                loadingScreen.classList.add('fade-out');
+
+                // Start fade in of main content
+                mainContent.classList.remove('loading');
+                mainContent.classList.add('fade-in');
+
+                // Completely hide loading screen after fade completes
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                }, 1000); // Match the fade duration
+
+            }, 2500);
+        });
+
+        function setupEventListeners() {
+            // Playlist tab clicks (both main and mini)
+            document.querySelectorAll('.playlist-tab, .mini-playlist-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    const playlistType = e.target.getAttribute('data-playlist');
+                    switchPlaylist(playlistType);
+                });
+            });
+
+            // Control buttons
+            playBtn.addEventListener('click', togglePlayPause);
+            prevBtn.addEventListener('click', previousTrack);
+            nextBtn.addEventListener('click', nextTrack);
+            albumArt.addEventListener('click', scrollToDetail);
+
+            // Mini player controls
+            miniPlayBtn.addEventListener('click', togglePlayPause);
+            miniPrevBtn.addEventListener('click', previousTrack);
+            miniNextBtn.addEventListener('click', nextTrack);
+            miniHomeBtn.addEventListener('click', scrollToHome);
+
+            // Progress bar click
+            document.getElementById('progressBar').addEventListener('click', seekProgress);
+
+            // Back to top button
+            backToTopBtn.addEventListener('click', scrollToHome);
+        }
+
+        function setupScrollHandling() {
+            // Show/hide back to top button and mini player based on scroll position
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const showThreshold = window.innerHeight * 0.8;
+
+                if (scrollPosition > showThreshold) {
+                    backToTopBtn.classList.add('visible');
+                    miniPlayerContainer.classList.add('visible');
+                    playlistLabel.classList.add('visible');
+                    signature.classList.add('hidden'); // Hide signature when mini player shows
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                    miniPlayerContainer.classList.remove('visible');
+                    playlistLabel.classList.remove('visible');
+                    signature.classList.remove('hidden'); // Show signature when mini player hides
+                }
+
+                // Check which detail section is currently visible and update playlist label
+                const detailSections = document.querySelectorAll('.detail-section');
+                let currentVisiblePlaylist = null;
+
+                detailSections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5) {
+                        section.classList.add('visible');
+
+                        // Extract playlist type from section ID (e.g., "detail-about-0" -> "about")
+                        const sectionId = section.id;
+                        if (sectionId.includes('detail-about')) {
+                            currentVisiblePlaylist = 'about';
+                        } else if (sectionId.includes('detail-projects')) {
+                            currentVisiblePlaylist = 'projects';
+                        }
+                    } else {
+                        section.classList.remove('visible');
+                    }
+                });
+
+                // Update playlist label based on visible section
+                if (currentVisiblePlaylist && scrollPosition > showThreshold) {
+                    updatePlaylistLabel(currentVisiblePlaylist);
+                }
+            });
+        }
+
+        function updatePlaylistLabel(playlistType) {
+            if (playlistType === 'about') {
+                playlistLabelText.textContent = 'About Me';
+            } else if (playlistType === 'projects') {
+                playlistLabelText.textContent = 'Projects';
+            }
+        }
+
+        function scrollToDetail() {
+            // Construct the detail section ID based on current playlist and index
+            const detailId = `detail-${currentPlaylist}-${currentIndex}`;
+            const detailSection = document.getElementById(detailId);
+
+            if (detailSection) {
+                detailSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        function scrollToHome() {
+            document.getElementById('home').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function switchPlaylist(playlistType) {
+            // Update active tab (both main and mini)
+            document.querySelectorAll('.playlist-tab, .mini-playlist-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll(`[data-playlist="${playlistType}"]`).forEach(tab => {
+                tab.classList.add('active');
+            });
+
+            // Switch playlist
+            currentPlaylist = playlistType;
+            currentIndex = 0; // Always start from first track when switching playlists
+
+            // Re-render playlist and load first track
+            renderPlaylist();
+            loadTrack(0);
+
+            // Auto-scroll to detail section if mini player is visible
+            if (miniPlayerContainer.classList.contains('visible')) {
+                setTimeout(() => scrollToDetail(), 200);
+            }
+        }
+
+        function renderPlaylist() {
+            const playlist = playlists[currentPlaylist];
+            const tracks = playlist.tracks;
+
+            // Update tracks header
+            tracksTitle.textContent = 'Tracks';
+            tracksCount.textContent = `${tracks.length} tracks`;
+
+            playlistContent.innerHTML = tracks.map((track, index) => `
+                <div class="track-item ${index === currentIndex ? 'active' : ''}" data-index="${index}">
+                    <span class="track-number">${index + 1}</span>
+                    <div class="track-details">
+                        <div class="track-name">${track.title}</div>
+                        <div class="track-meta">${track.artist.split(' • ').slice(-2).join(' • ')}</div>
+                    </div>
+                    <span class="track-duration">${track.duration}</span>
+                </div>
+            `).join('');
+
+            // Add click listeners to new track items
+            document.querySelectorAll('.track-item').forEach((item, index) => {
+                item.addEventListener('click', () => selectTrack(index));
+            });
+        }
+
+        function getCurrentTracks() {
+            return playlists[currentPlaylist].tracks;
+        }
+
+        function selectTrack(index) {
+            // Remove active class from all tracks
+            document.querySelectorAll('.track-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active class to selected track
+            const trackItems = document.querySelectorAll('.track-item');
+            if (trackItems[index]) {
+                trackItems[index].classList.add('active');
+            }
+
+            currentIndex = index;
+            loadTrack(index);
+        }
+
+        function loadTrack(index) {
+            const tracks = getCurrentTracks();
+            const track = tracks[index];
+            if (!track) return;
+
+            // Update main display
+            currentTrack.textContent = track.title;
+            trackArtist.textContent = track.artist;
+            trackDescription.textContent = track.description;
+            nowPlaying.textContent = 'NOW PLAYING';
+
+            // Update mini player
+            miniTrackTitle.textContent = track.title;
+            miniTrackArtist.textContent = track.artist.split(' • ')[0]; // Show first part for brevity
+
+            // Parse duration and set total time
+            totalDuration = parseDuration(track.duration);
+            totalTimeEl.textContent = track.duration;
+            currentTime = 0;
+            currentTimeEl.textContent = '0:00';
+
+            // Reset progress
+            progressBar.style.width = '0%';
+
+            // Update album art (both main and mini)
+            if (track.image) {
+                albumArt.style.backgroundImage = `url("${track.image}")`;
+                albumArt.classList.add('project-preview');
+                miniAlbumArt.style.backgroundImage = `url("${track.image}")`;
+
+                // Update overlay
+                overlayTitle.textContent = track.title;
+                overlayTech.textContent = 'Click to explore';
+            } else {
+                albumArt.style.backgroundImage = '';
+                albumArt.style.background = 'linear-gradient(135deg, var(--soft-blue), var(--plum))';
+                albumArt.classList.remove('project-preview');
+                miniAlbumArt.style.backgroundImage = '';
+                miniAlbumArt.style.background = 'linear-gradient(135deg, var(--soft-blue), var(--plum))';
+            }
+
+            // Reset play state
+            stopProgress();
+            isPlaying = false;
+            playBtn.innerHTML = '▶';
+            miniPlayBtn.innerHTML = '▶';
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                pause();
+            } else {
+                play();
+            }
+        }
+
+        function play() {
+            isPlaying = true;
+            playBtn.innerHTML = '⏸';
+            miniPlayBtn.innerHTML = '⏸';
+            startProgress();
+        }
+
+        function pause() {
+            isPlaying = false;
+            playBtn.innerHTML = '▶';
+            miniPlayBtn.innerHTML = '▶';
+            stopProgress();
+        }
+
+        function startProgress() {
+            stopProgress();
+            progressInterval = setInterval(() => {
+                if (currentTime < totalDuration) {
+                    currentTime += 1;
+                    updateProgressDisplay();
+                } else {
+                    nextTrack();
+                }
+            }, 1000);
+        }
+
+        function stopProgress() {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+        }
+
+        function updateProgressDisplay() {
+            const progressPercent = (currentTime / totalDuration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            currentTimeEl.textContent = formatTime(currentTime);
+        }
+
+        function seekProgress(event) {
+            const progressBarContainer = event.currentTarget;
+            const rect = progressBarContainer.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const width = rect.width;
+            const seekPercent = (clickX / width) * 100;
+
+            currentTime = Math.floor((seekPercent / 100) * totalDuration);
+            updateProgressDisplay();
+        }
+
+        function parseDuration(duration) {
+            const parts = duration.split(':');
+            return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function previousTrack() {
+            const tracks = getCurrentTracks();
+            const newIndex = currentIndex > 0 ? currentIndex - 1 : tracks.length - 1;
+            selectTrack(newIndex);
+
+            // Auto-scroll to detail section if mini player is visible
+            if (miniPlayerContainer.classList.contains('visible')) {
+                setTimeout(() => scrollToDetail(), 100);
+            }
+        }
+
+        function nextTrack() {
+            const tracks = getCurrentTracks();
+            const newIndex = currentIndex < tracks.length - 1 ? currentIndex + 1 : 0;
+            selectTrack(newIndex);
+
+            // Auto-scroll to detail section if mini player is visible
+            if (miniPlayerContainer.classList.contains('visible')) {
+                setTimeout(() => scrollToDetail(), 100);
+            }
+        }
+    </script>
 </body>
 </html>
