@@ -867,6 +867,16 @@
             margin: 20px auto;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             border: 2px solid rgba(131, 173, 181, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .detail-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            border-color: var(--soft-blue);
         }
 
         .detail-description {
@@ -874,6 +884,7 @@
             line-height: 1.6;
             color: var(--text-light);
             margin-bottom: 25px;
+            margin-top: 25px;
             text-align: left;
             max-width: 700px;
             margin-left: auto;
@@ -1359,43 +1370,6 @@
         </div>
     </div>
 
-    <!-- Signature -->
-    <div class="signature" id="signature">
-        <div class="signature-text">Amy Nguyen</div>
-    </div>
-
-    <!-- Playlist Label -->
-    <div class="playlist-label" id="playlistLabel">
-        <div class="playlist-label-text" id="playlistLabelText">About Me</div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">↑</button>
-
-    <!-- Mini Player Container -->
-    <div class="mini-player-container" id="miniPlayerContainer">
-        <div class="mini-playlist-tabs">
-            <button class="mini-playlist-tab active" data-playlist="about">About Me</button>
-            <button class="mini-playlist-tab" data-playlist="projects">Projects</button>
-            <button class="mini-home-tab" id="miniHomeBtn" title="Home">🏠</button>
-        </div>
-
-        <div class="mini-player" id="miniPlayer">
-            <div class="mini-album-art" id="miniAlbumArt"></div>
-
-            <div class="mini-track-info">
-                <div class="mini-track-title" id="miniTrackTitle">Welcome to My Portfolio</div>
-                <div class="mini-track-artist" id="miniTrackArtist">Select something to begin exploring</div>
-            </div>
-
-            <div class="mini-controls">
-                <button class="mini-control-btn" id="miniPrevBtn" title="Previous">⏮</button>
-                <button class="mini-control-btn mini-play-btn" id="miniPlayBtn" title="Play/Pause">▶</button>
-                <button class="mini-control-btn" id="miniNextBtn" title="Next">⏭</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <!-- Home Section -->
@@ -1462,15 +1436,16 @@
                     <a href="mailto:amyqanguyen@gmail.com" class="contact-link" title="Email">
                       <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email" width="24" height="24">
                     </a>
+                    <a href="https://www.linkedin.com/in/amy-nguyen-355205206/" target="_blank" class="contact-link" title="LinkedIn">
+                      <img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn" width="24" height="24">
+                    </a>
                     <a href="https://github.com/amyy2k" target="_blank" class="contact-link" title="GitHub">
                         <img src="https://img.icons8.com/ios-glyphs/50/ffffff/github.png" alt="GitHub" width="24" height="24">
                     </a>
-                    <a href="https://twitter.com/YOUR_USERNAME" target="_blank" class="contact-link" title="Twitter">
+                    <a href="https://x.com/hanloda" target="_blank" class="contact-link" title="Twitter">
                         <img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter" width="24" height="24">
                     </a>
-                    <a href="https://instagram.com/YOUR_USERNAME" target="_blank" class="contact-link" title="Instagram">
-                        <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram" width="24" height="24">
-                    </a>
+
                 </div>
 
             </div>
@@ -1485,7 +1460,7 @@
                 <!-- Tracks Header -->
                 <div class="tracks-header">
                     <div class="tracks-title" id="tracksTitle">Tracks</div>
-                    <div class="tracks-count" id="tracksCount">5 tracks</div>
+                    <div class="tracks-count" id="tracksCount">4 tracks</div>
                 </div>
 
                 <div class="playlist-content">
@@ -1500,7 +1475,6 @@
         <div class="detail-content">
             <h1 class="detail-title">Who am I</h1>
             <p class="detail-subtitle">Personal Introduction • Background</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg1\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23667eea;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23764ba2;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg1)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E👋%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'36\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EHello, I\'m Amy%3C/text%3E%3C/svg%3E')"></div>
             <p class="detail-description">
                 Hello! My name is Amy Nguyen. I am an aspiring developer and wish to hone my skills into my career path. I graduated with a Bachelor's of Computer Science from California State University Fullerton. I enjoy playing video games, jamming to music, gyming, and creating mini projects.
                 Showcased here are my projects I have created; they range from mobile applications to 3D modeling for video games. Despite having a variety of projects, I want to pursue a stronger field in web development.
@@ -1512,15 +1486,16 @@
                 <a href="mailto:amyqanguyen@gmail.com" class="contact-link" title="Email">
                   <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email" width="24" height="24">
                 </a>
+                <a href="https://www.linkedin.com/in/amy-nguyen-355205206/" target="_blank" class="contact-link" title="LinkedIn">
+                  <img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn" width="24" height="24">
+                </a>
                 <a href="https://github.com/amyy2k" target="_blank" class="contact-link" title="GitHub">
                     <img src="https://img.icons8.com/ios-glyphs/50/ffffff/github.png" alt="GitHub" width="24" height="24">
                 </a>
-                <a href="https://twitter.com/YOUR_USERNAME" target="_blank" class="contact-link" title="Twitter">
+                <a href="https://x.com/hanloda" target="_blank" class="contact-link" title="Twitter">
                     <img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter" width="24" height="24">
                 </a>
-                <a href="https://instagram.com/YOUR_USERNAME" target="_blank" class="contact-link" title="Instagram">
-                    <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram" width="24" height="24">
-                </a>
+
             </div>
         </div>
     </div>
@@ -1529,21 +1504,22 @@
         <div class="detail-content">
             <h1 class="detail-title">My Skills</h1>
             <p class="detail-subtitle">Technical Expertise • Programming</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg2\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%234a9eff;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%238b5cf6;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg2)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E💻%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3ETechnical Skills%3C/text%3E%3C/svg%3E')"></div>
             <p class="detail-description">
                 I've developed a diverse skill set that spans across multiple domains of software development. My programming languages include Swift for iOS development, Python for backend and data analysis, JavaScript for interactive web experiences, and SQL for database management. In terms of frameworks and tools, I'm experienced with SwiftUI for creating beautiful iOS interfaces, Three.js for immersive 3D web graphics, React for dynamic user interfaces, and various database systems for robust data management. What sets me apart is my ability to combine technical proficiency with creative vision. I don't just write code - I craft experiences that engage users and solve meaningful problems.
             </p>
             <div class="tech-stack">
+                <div class="tech-item">HTML/CSS/JS</div>
+                <div class="tech-item">Three.js</div>
+                <div class="tech-item">GSAP.js</div>
                 <div class="tech-item">Swift</div>
                 <div class="tech-item">Python</div>
-                <div class="tech-item">JavaScript</div>
-                <div class="tech-item">SwiftUI</div>
-                <div class="tech-item">Three.js</div>
+                <div class="tech-item">C++</div>
                 <div class="tech-item">React</div>
                 <div class="tech-item">SQL</div>
                 <div class="tech-item">Blender</div>
                 <div class="tech-item">Unity</div>
-                <div class="tech-item">HTML/CSS</div>
+                <div class="tech-item">Model Design</div>
+
             </div>
         </div>
     </div>
@@ -1552,10 +1528,19 @@
         <div class="detail-content">
             <h1 class="detail-title">My Interests</h1>
             <p class="detail-subtitle">Hobbies • Passions • Inspiration</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg3\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23FF6B35;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23F7931E;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg3)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E🎨%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3ECreative Spirit%3C/text%3E%3C/svg%3E')"></div>
             <p class="detail-description">
                 Beyond the world of coding, I'm deeply passionate about creative technology and artistic expression. Music production is one of my biggest interests - I love creating soundscapes and experimenting with audio visualization techniques that bring music to life in visual form. I'm fascinated by 3D art and spend considerable time exploring tools like Blender to create digital sculptures and environments. The intersection of art and technology excites me, especially in emerging fields like virtual and augmented reality where I can create immersive experiences that engage multiple senses. Music plays a huge role in my creative process and I believe that the best technology solutions often come from approaching problems with an artist's eye.
             </p>
+            <div class="tech-stack">
+                <div class="tech-item">Music</div>
+                <div class="tech-item">Video Games</div>
+                <div class="tech-item">Cooking</div>
+                <div class="tech-item">Food</div>
+                <div class="tech-item">Traveling</div>
+                <div class="tech-item">Cinema</div>
+                <div class="tech-item">Water</div>
+                <div class="tech-item">Lulu the Piggy</div>
+            </div>
         </div>
     </div>
 
@@ -1563,20 +1548,8 @@
         <div class="detail-content">
             <h1 class="detail-title">My Experience</h1>
             <p class="detail-subtitle">Work • Projects • Learning Journey</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg4\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2311998e;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2338ef7d;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg4)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E🚀%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EGrowing Daily%3C/text%3E%3C/svg%3E')"></div>
             <p class="detail-description">
                 Through various projects and coursework, I've gained hands-on experience across the full spectrum of software development. From building iOS applications that solve real-world problems to creating immersive web experiences with 3D graphics, each project has contributed to my growth as a developer. My experience spans full-stack development, mobile app creation, database management, and creative technology. I've worked on everything from food delivery applications to audio visualizers, each teaching me valuable lessons about problem-solving, user experience design, and the critical importance of writing clean, maintainable code. What I've learned most is that great software isn't just about technical excellence - it's about understanding users and creating solutions that feel intuitive and delightful to use.
-            </p>
-        </div>
-    </div>
-
-    <div class="detail-section" id="detail-about-4">
-        <div class="detail-content">
-            <h1 class="detail-title">My Goals</h1>
-            <p class="detail-subtitle">Aspirations • Future Vision • Dreams</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradBg5\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23FC466B;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%233F5EFB;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradBg5)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E⭐%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EDream Big%3C/text%3E%3C/svg%3E')"></div>
-            <p class="detail-description">
-                My aspiration is to work at the intersection of technology and creativity, developing applications that don't just solve problems but also inspire and delight users. I want to contribute to meaningful projects that have a positive impact on people's lives and help bridge the digital divide. I'm particularly interested in mobile development and creative technology, with a focus on building inclusive digital experiences that work for everyone. I believe the future of technology lies in making complex systems more human, more intuitive, and more accessible. Long-term, I see myself leading teams that push the boundaries of what's possible with technology while never losing sight of the human element.
             </p>
         </div>
     </div>
@@ -1586,7 +1559,7 @@
         <div class="detail-content">
             <h1 class="detail-title">Food Deli iOS App</h1>
             <p class="detail-subtitle">iOS Development • Swift & SwiftUI</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj1\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23FF6B35;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23F7931E;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj1)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'100\' fill=\'white\' text-anchor=\'middle\'%3E🍎%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'32\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EFood Deli App%3C/text%3E%3Ctext x=\'300\' y=\'240\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EiOS Application%3C/text%3E%3C/svg%3E')"></div>
+            <a href="https://github.com/amyy2k/FoodDeli" target="_blank" class="detail-image" style="background-image: url('banner-projects-0.png')" title="View on GitHub"></a>
             <p class="detail-description">
                 A comprehensive food delivery application built from the ground up using Swift and SwiftUI. This project showcases modern iOS development practices with a focus on creating an intuitive and visually appealing user experience. The app features real-time order tracking that keeps users informed throughout their delivery journey, secure user authentication to protect personal information, an elegant restaurant browsing interface that makes discovery enjoyable, and seamless payment integration for a frictionless checkout experience. Built with performance optimization in mind, the app demonstrates advanced iOS patterns including MVVM architecture, Combine framework for reactive programming, and custom animations that bring the interface to life.
             </p>
@@ -1605,7 +1578,7 @@
         <div class="detail-content">
             <h1 class="detail-title">Audio Visualizer</h1>
             <p class="detail-subtitle">Web Development • Three.js & WebGL</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj2\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%234a9eff;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%238b5cf6;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj2)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'100\' fill=\'white\' text-anchor=\'middle\'%3E🎵%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EAudio Visualizer%3C/text%3E%3Ctext x=\'300\' y=\'240\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EThree.js • WebGL%3C/text%3E%3C/svg%3E')"></div>
+            <a href="https://github.com/amyy2k/Audio-Visualizer-w-Lyrics" target="_blank" class="detail-image" style="background-image: url('banner-projects-1.png')" title="View on GitHub"></a>
             <p class="detail-description">
                 An interactive 3D audio visualizer that transforms music into stunning visual art in real-time. This project explores the intersection of audio processing, 3D graphics, and user interaction to create an immersive multimedia experience. Built with Three.js and WebGL, the visualizer features dynamic particle systems that dance to the rhythm, responsive lighting effects that react to audio frequencies, multiple visualization modes to suit different musical styles, and customizable color schemes that allow users to personalize their experience. The technical implementation involves complex audio analysis using the Web Audio API, efficient 3D rendering optimized for smooth 60fps performance, and sophisticated shader programming to create visual effects that feel alive and responsive to the music's emotional content.
             </p>
@@ -1624,7 +1597,7 @@
         <div class="detail-content">
             <h1 class="detail-title">Music Mixer Hardware</h1>
             <p class="detail-subtitle">Hardware Programming • Raspberry Pi & Python</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj3\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2311998e;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2338ef7d;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj3)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'100\' fill=\'white\' text-anchor=\'middle\'%3E🎛%3C/text%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'28\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EMusic Mixer%3C/text%3E%3Ctext x=\'300\' y=\'240\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3ERaspberry Pi%3C/text%3E%3C/svg%3E')"></div>
+            <a href="https://github.com/amyy2k/RasberryPiMusicMixer" target="_blank" class="detail-image" style="background-image: url('banner-projects-2.png')" title="View on GitHub"></a>
             <p class="detail-description">
                 A custom-built music mixing station that brings the power of digital audio workstations into a tactile, hardware-based interface. This project demonstrates the integration of hardware and software to create professional-grade music production tools. The mixer features physical knobs and sliders for intuitive real-time audio manipulation, MIDI integration for seamless connectivity with existing music software, a responsive touch-screen interface for visual feedback and control, and robust audio processing capabilities perfect for live performances. Built on a Raspberry Pi foundation with custom Python software, the project showcases embedded systems programming, real-time audio processing, hardware interface design, and the challenges of creating reliable performance hardware that musicians can depend on in live settings.
             </p>
@@ -1643,7 +1616,7 @@
         <div class="detail-content">
             <h1 class="detail-title">Fullerton Vending Database</h1>
             <p class="detail-subtitle">Database Management • MySQL & Python</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj4\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23FC466B;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%233F5EFB;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj4)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E🏪%3C/text%3E%3Ctext x=\'300\' y=\'190\' font-family=\'Arial\' font-size=\'24\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EFullerton Vending%3C/text%3E%3Ctext x=\'300\' y=\'220\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EDatabase System%3C/text%3E%3C/svg%3E')"></div>
+            <a href="https://github.com/amyy2k/vending-machine-database" target="_blank" class="detail-image" style="background-image: url('banner-projects-3.png')" title="View on GitHub"></a>
             <p class="detail-description">
                 A comprehensive vending machine management system designed specifically for the Cal State Fullerton campus. This project demonstrates enterprise-level database design and management for real-world operational challenges. The system provides robust inventory tracking across multiple campus locations, detailed sales analytics for business intelligence, automated maintenance scheduling to ensure optimal machine performance, and real-time reporting capabilities accessible through an intuitive web dashboard. Built with MySQL for reliable data storage and Python for backend processing, the project showcases database optimization techniques, complex query design for analytics, automated reporting systems, and the integration of multiple data sources into a unified management platform.
             </p>
@@ -1662,7 +1635,7 @@
         <div class="detail-content">
             <h1 class="detail-title">Hanloda's Avatar Company</h1>
             <p class="detail-subtitle">3D Development • Blender & Unity</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj5\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%23667eea;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%23764ba2;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj5)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'100\' fill=\'white\' text-anchor=\'middle\'%3E🌟%3C/text%3E%3Ctext x=\'300\' y=\'190\' font-family=\'Arial\' font-size=\'22\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EHanloda\'s Avatar Company%3C/text%3E%3Ctext x=\'300\' y=\'220\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EVR Experience%3C/text%3E%3C/svg%3E')"></div>
+            <a href="https://github.com/amyy2k/hanloda-avatar" target="_blank" class="detail-image" style="background-image: url('banner-projects-4.png')" title="View on GitHub"></a>
             <p class="detail-description">
                 An immersive virtual reality experience that pushes the boundaries of digital avatar creation and interactive virtual environments. This project represents the cutting edge of VR development and 3D character design. The experience features custom 3D avatars with detailed animations and expressions, interactive virtual environments that respond to user presence, physics-based interactions that feel natural and intuitive, and immersive gameplay mechanics designed specifically for virtual reality. Created using Blender for detailed 3D modeling and texturing, Unity for VR implementation and interaction systems, the project showcases advanced 3D pipeline workflows, VR UX design principles, performance optimization for immersive experiences, and the technical challenges of creating presence in virtual spaces.
             </p>
@@ -1681,7 +1654,7 @@
         <div class="detail-content">
             <h1 class="detail-title">Adaptive Provisions Store</h1>
             <p class="detail-subtitle">Web Development • HTML, CSS & GSAP</p>
-            <div class="detail-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 600 300\'%3E%3Cdefs%3E%3ClinearGradient id=\'gradProj6\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' style=\'stop-color:%2311998e;stop-opacity:1\' /%3E%3Cstop offset=\'100%25\' style=\'stop-color:%2338ef7d;stop-opacity:1\' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=\'600\' height=\'300\' fill=\'url(%23gradProj6)\'/%3E%3Ctext x=\'300\' y=\'120\' font-family=\'Arial\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\'%3E🛍%3C/text%3E%3Ctext x=\'300\' y=\'190\' font-family=\'Arial\' font-size=\'22\' fill=\'white\' text-anchor=\'middle\' font-weight=\'bold\'%3EAdaptive Provisions%3C/text%3E%3Ctext x=\'300\' y=\'220\' font-family=\'Arial\' font-size=\'18\' fill=\'white\' text-anchor=\'middle\'%3EE-commerce Store%3C/text%3E%3C/svg%3E')"></div>
+            <a href="https://github.com/amyy2k/adaptive-provisions" target="_blank" class="detail-image" style="background-image: url('banner-projects-5.png')" title="View on GitHub"></a>
             <p class="detail-description">
                 A modern e-commerce website that demonstrates the power of thoughtful animation and interaction design in creating engaging shopping experiences. This project showcases advanced web development techniques focused on user engagement and conversion. The site features stunning animations powered by GSAP that guide users through the shopping journey, interactive product showcases that bring items to life, responsive design that works beautifully across all devices, and engaging user interactions that make shopping enjoyable rather than transactional. Built with semantic HTML for accessibility, advanced CSS for sophisticated layouts and effects, and GSAP for professional-grade animations, the project demonstrates modern web development best practices, performance optimization techniques, and the art of creating digital experiences that feel both premium and approachable.
             </p>
@@ -1696,54 +1669,6 @@
         </div>
     </div>
 
-    <!-- Tech Stack Indicator -->
-    <div class="tech-stack-indicator">
-        <div class="tech-stack-title">Built with</div>
-        <div class="tech-codes">
-            <span class="tech-code">HTML5</span>
-            <span class="tech-code">CSS3</span>
-            <span class="tech-code">JavaScript</span>
-            <span class="tech-code">Love</span>
-        </div>
-    </div>
-
-    <!-- Signature -->
-    <div class="signature" id="signature">
-        <div class="signature-text">Amy Nguyen</div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">↑</button>
-
-    <!-- Playlist Label -->
-    <div class="playlist-label" id="playlistLabel">
-        <div class="playlist-label-text" id="playlistLabelText">About Me</div>
-    </div>
-
-    <!-- Mini Player Container -->
-    <div class="mini-player-container" id="miniPlayerContainer">
-        <div class="mini-playlist-tabs">
-            <button class="mini-playlist-tab active" data-playlist="about">About Me</button>
-            <button class="mini-playlist-tab" data-playlist="projects">Projects</button>
-        </div>
-
-        <div class="mini-player" id="miniPlayer">
-            <div class="mini-album-art" id="miniAlbumArt"></div>
-
-            <div class="mini-track-info">
-                <div class="mini-track-title" id="miniTrackTitle">Welcome to My Portfolio</div>
-                <div class="mini-track-artist" id="miniTrackArtist">Select something to begin exploring</div>
-            </div>
-
-            <div class="mini-controls">
-                <button class="mini-control-btn mini-home-btn" id="miniHomeBtn" title="Home">🏠</button>
-                <button class="mini-control-btn" id="miniPrevBtn" title="Previous">⏮</button>
-                <button class="mini-control-btn mini-play-btn" id="miniPlayBtn" title="Play/Pause">▶</button>
-                <button class="mini-control-btn" id="miniNextBtn" title="Next">⏭</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Main Content End -->
     </div>
 
@@ -1751,23 +1676,39 @@
         /*
         IMAGE FILE NAMING CONVENTION:
 
-        About Me Images:
-        - about-0.png (Who am I)
-        - about-1.png (My Skills)
-        - about-2.png (My Interests)
-        - about-3.png (My Experience)
-        - about-4.png (My Goals)
+        ALBUM IMAGES (Square, for player album art):
+        About Me Album Images:
+        - album-about-0.png (Who am I)
+        - album-about-1.png (My Skills)
+        - album-about-2.png (My Interests)
+        - album-about-3.png (My Experience)
 
-        Project Images:
-        - project-0.png (Food Deli iOS App)
-        - project-1.png (Audio Visualizer)
-        - project-2.png (Music Mixer Hardware)
-        - project-3.png (Fullerton Vending Database)
-        - project-4.png (Hanloda's Avatar Company)
-        - project-5.png (Adaptive Provisions Store)
+        Project Album Images:
+        - album-projects-0.png (Food Deli iOS App)
+        - album-projects-1.png (Audio Visualizer)
+        - album-projects-2.png (Music Mixer Hardware)
+        - album-projects-3.png (Fullerton Vending Database)
+        - album-projects-4.png (Hanloda's Avatar Company)
+        - album-projects-5.png (Adaptive Provisions Store)
+
+        BANNER IMAGES (Rectangular, for detail section headers):
+        About Me Banner Images:
+        - banner-about-0.png (Who am I)
+        - banner-about-1.png (My Skills)
+        - banner-about-2.png (My Interests)
+        - banner-about-3.png (My Experience)
+
+        Project Banner Images:
+        - banner-projects-0.png (Food Deli iOS App)
+        - banner-projects-1.png (Audio Visualizer)
+        - banner-projects-2.png (Music Mixer Hardware)
+        - banner-projects-3.png (Fullerton Vending Database)
+        - banner-projects-4.png (Hanloda's Avatar Company)
+        - banner-projects-5.png (Adaptive Provisions Store)
 
         All images should be placed in the same directory as this HTML file.
-        Recommended size: 300x300px or larger for best quality.
+        Album images: Recommended size 300x300px (square)
+        Banner images: Recommended size 500x200px (rectangular)
         */
 
         // Project data
@@ -1777,7 +1718,7 @@
                 artist: "iOS Development • Swift & SwiftUI",
                 description: "A comprehensive food delivery application built with Swift and SwiftUI. Features real-time order tracking, user authentication, restaurant browsing, and seamless payment integration. Designed with a focus on user experience and performance optimization.",
                 duration: "6:24",
-                link: "https://github.com/amyy2k/food-deli-app",
+                link: "https://github.com/amyy2k/FoodDeli",
                 image: "fooddeliicon.png"
             },
             {
@@ -1785,7 +1726,7 @@
                 artist: "Web Development • Three.js & WebGL",
                 description: "An interactive 3D audio visualizer that responds to music in real-time. Built with Three.js and WebGL, featuring dynamic particle systems, responsive lighting effects, and multiple visualization modes with customizable color schemes.",
                 duration: "4:15",
-                link: "https://github.com/amyy2k/audio-visualizer",
+                link: "https://github.com/amyy2k/Audio-Visualizer-w-Lyrics",
                 image: "visualizer.png"
             },
             {
@@ -1793,16 +1734,16 @@
                 artist: "Hardware Programming • Raspberry Pi & Python",
                 description: "A custom-built music mixing station using Raspberry Pi and Python. Features physical knobs and sliders for real-time audio manipulation, MIDI integration, and a responsive touch-screen interface. Perfect for live performances.",
                 duration: "3:42",
-                link: "https://github.com/amyy2k/music-mixer",
-                image: "project-2.png"
+                link: "https://github.com/amyy2k/RasberryPiMusicMixer",
+                image: "musicmixer.png"
             },
             {
                 title: "Fullerton Vending Database",
                 artist: "Database Management • MySQL & Python",
                 description: "A comprehensive vending machine management system for CSUF campus. Built with MySQL and Python, featuring inventory tracking, sales analytics, maintenance scheduling, and real-time reporting with an intuitive web dashboard.",
                 duration: "5:30",
-                link: "https://github.com/amyy2k/fullerton-vending",
-                image: "project-3.png"
+                link: "https://github.com/amyy2k/vending-machine-database",
+                image: "vendingmachine.png"
             },
             {
                 title: "Hanloda's Avatar Company",
@@ -1810,7 +1751,7 @@
                 description: "A virtual reality experience featuring custom 3D avatars and interactive environments. Built with Blender for 3D modeling and Unity for VR implementation. Includes physics-based interactions and immersive gameplay mechanics.",
                 duration: "7:18",
                 link: "https://github.com/amyy2k/hanloda-avatar",
-                image: "project-4.png"
+                image: "album-projects-4.png"
             },
             {
                 title: "Adaptive Provisions Store",
@@ -1829,7 +1770,7 @@
                 artist: "Graduate • Web Development • UX/UI • Dreamer",
                 description: "I'm Amy Nguyen, a passionate software developer and creative technologist. This portfolio showcases my strengths and creative thinking. If you would like to learn more, click on the album cover to expand!",
                 duration: "4:48",
-                link: "#about",
+                link: "mailto:amyqanguyen@gmail.com",
                 image: "Amy.png"
             },
             {
@@ -1837,24 +1778,24 @@
                 artist: "Languages • Framework • Softwares",
                 description: "Proficient in Swift, Python, JavaScript, HTML/CSS, and SQL. Experienced with frameworks like SwiftUI, Three.js, React, and tools like Blender, Unity, and various databases.",
                 duration: "5:12",
-                link: "#skills",
-                image: "about-1.png"
+                link: "https://github.com/amyy2k",
+                image: "skills.png"
             },
             {
                 title: "My Interests",
                 artist: "Hobbies • Passions • Inspiration",
                 description: "I enjoy jamming to music, playing video games, and cooking various dishes. From time to time I like to explore out of my reach for niche restaurants to try out.",
                 duration: "4:33",
-                link: "#interests",
-                image: "about-2.png"
+                link: "https://x.com/hanloda",
+                image: "hobby.png"
             },
             {
                 title: "My Experience",
                 artist: "Work • Projects • Learning Journey",
                 description: "Although most of my time were from projects, I have been recently contracted to work on a website for a start up company.",
                 duration: "6:18",
-                link: "#experience",
-                image: "about-3.png"
+                link: "https://github.com/amyy2k",
+                image: "experience.png"
             },
         ];
 
