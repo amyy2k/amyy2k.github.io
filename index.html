@@ -475,6 +475,63 @@
             transform: translateY(0);
         }
 
+        /* Click Me Indicator - Wall Style */
+        .wall-indicator {
+            position: absolute;
+            top: 25%;
+            left: 1%;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: rgba(131, 173, 181, 0.9);
+            text-shadow: 0 0 25px rgba(131, 173, 181, 0.6), 0 0 40px rgba(131, 173, 181, 0.3);
+            z-index: 15;
+            pointer-events: none;
+            opacity: 1;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: wallGlow 3s ease-in-out infinite;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .wall-indicator.hidden {
+            opacity: 0;
+            transform: rotate(-8deg) translateY(-20px);
+        }
+
+        .wall-indicator .arrow {
+            display: inline-block;
+            margin-left: 8px;
+            animation: wallArrowPoint 2s ease-in-out infinite;
+            font-size: 1.6rem;
+            color: rgba(199, 187, 201, 0.9);
+            transform: rotate(45deg);
+        }
+
+        @keyframes wallGlow {
+            0%, 100% {
+                text-shadow: 0 0 25px rgba(131, 173, 181, 0.6), 0 0 40px rgba(131, 173, 181, 0.3);
+                color: rgba(131, 173, 181, 0.9);
+            }
+            50% {
+                text-shadow: 0 0 35px rgba(131, 173, 181, 0.8), 0 0 50px rgba(131, 173, 181, 0.5);
+                color: rgba(131, 173, 181, 1);
+            }
+        }
+
+        @keyframes wallArrowPoint {
+            0%, 100% {
+                transform: rotate(45deg) translateY(0);
+            }
+            50% {
+                transform: rotate(45deg) translateY(3px);
+            }
+        }
+
         .track-info {
             flex: 1;
             display: flex;
@@ -1118,6 +1175,17 @@
                 height: 150px;
             }
 
+            .wall-indicator {
+                font-size: 1.2rem;
+                top: 15%;
+                left: 10%;
+                transform: rotate(-6deg);
+            }
+
+            .wall-indicator .arrow {
+                font-size: 1.4rem;
+            }
+
             .detail-title {
                 font-size: 2rem;
             }
@@ -1218,6 +1286,17 @@
             .loading-notes {
                 gap: 12px;
                 height: 80px;
+            }
+
+            .wall-indicator {
+                font-size: 1.1rem;
+                top: 12%;
+                left: 8%;
+                transform: rotate(-4deg);
+            }
+
+            .wall-indicator .arrow {
+                font-size: 1.3rem;
             }
 
             .detail-section {
@@ -1353,7 +1432,7 @@
             <div class="mini-controls">
                 <button class="mini-control-btn mini-home-btn" id="miniHomeBtn" title="Home">🏠︎</button>
                 <button class="mini-control-btn" id="miniPrevBtn" title="Previous">⏮</button>
-                <button class="mini-control-btn mini-play-btn" id="miniPlayBtn" title="Play/Pause">▶</button>
+                <button class="mini-control-btn mini-play-btn" id="miniPlayBtn" title="Open Project">▶</button>
                 <button class="mini-control-btn" id="miniNextBtn" title="Next">⏭</button>
             </div>
         </div>
@@ -1376,6 +1455,11 @@
     <div class="home-section" id="home">
         <div class="background-vinyl"></div>
 
+        <!-- Wall Indicator -->
+        <div class="wall-indicator" id="wallIndicator">
+            Click album cover! <span class="arrow">↗</span>
+        </div>
+
         <div class="app-container">
             <!-- Main Player -->
             <div class="player-container">
@@ -1383,8 +1467,8 @@
                 <div class="album-section">
                     <div class="album-art" id="albumArt">
                         <div class="project-overlay" id="projectOverlay">
-                            <h3 id="overlayTitle">Learn More</h3>
-                            <p id="overlayTech">Click to explore</p>
+                            <h3 id="overlayTitle">View More</h3>
+                            <p id="overlayTech">Select a project to see details</p>
                         </div>
                     </div>
                     <div class="track-info">
@@ -1392,7 +1476,7 @@
                         <h1 class="track-title" id="currentTrack">Welcome to My Portfolio</h1>
                         <div class="track-artist" id="trackArtist">Select something to begin exploring</div>
                         <p class="track-description" id="trackDescription">
-                            Discover my journey through code, creativity, and innovation. Each section represents a unique aspect of who I am and what I create, showcasing different technologies and approaches to problem-solving.
+                            Discover my journey through code, creativity, and innovation. Each section represents a unique aspect of who I am and what I create, showcasing different technologies and approaches to problem-solving. Click the play button to open projects, or click the album art to view more details!
                         </p>
                     </div>
                 </div>
@@ -1426,7 +1510,7 @@
                 <div class="controls">
                     <button class="control-btn small" title="Shuffle">⤮</button>
                     <button class="control-btn small" id="prevBtn" title="Previous">⏮</button>
-                    <button class="control-btn play-btn" id="playBtn" title="Play/Pause">▶</button>
+                    <button class="control-btn play-btn" id="playBtn" title="Open Project">▶</button>
                     <button class="control-btn small" id="nextBtn" title="Next">⏭</button>
                     <button class="control-btn small" title="Repeat">↻</button>
                 </div>
@@ -1559,7 +1643,7 @@
         <div class="detail-content">
             <h1 class="detail-title">Food Deli iOS App</h1>
             <p class="detail-subtitle">iOS Development • Swift & SwiftUI</p>
-            <a href="https://github.com/amyy2k/FoodDeli" target="_blank" class="detail-image" style="background-image: url('banner-projects-0.png')" title="View on GitHub"></a>
+            <a href="https://github.com/amyy2k/FoodDeli" target="_blank" class="detail-image" style="background-image: url('images/fooddeli.png')" title="View on GitHub"></a>
             <p class="detail-description">
                 A comprehensive food delivery application built from the ground up using Swift and SwiftUI. This project showcases modern iOS development practices with a focus on creating an intuitive and visually appealing user experience. The app features real-time order tracking that keeps users informed throughout their delivery journey, secure user authentication to protect personal information, an elegant restaurant browsing interface that makes discovery enjoyable, and seamless payment integration for a frictionless checkout experience. Built with performance optimization in mind, the app demonstrates advanced iOS patterns including MVVM architecture, Combine framework for reactive programming, and custom animations that bring the interface to life.
             </p>
@@ -1576,85 +1660,28 @@
 
     <div class="detail-section" id="detail-projects-1">
         <div class="detail-content">
-            <h1 class="detail-title">Audio Visualizer</h1>
-            <p class="detail-subtitle">Web Development • Three.js & WebGL</p>
-            <a href="https://github.com/amyy2k/Audio-Visualizer-w-Lyrics" target="_blank" class="detail-image" style="background-image: url('banner-projects-1.png')" title="View on GitHub"></a>
+            <h1 class="detail-title">Sushi Yun Restaurant Website</h1>
+            <p class="detail-subtitle">Web Development • HTML, CSS & JavaScript</p>
+            <a href="https://amyy2k.github.io/SushiYun/" target="_blank" class="detail-image" style="background-image: url('images/sushiyunbanner.png')" title="View on GitHub"></a>
             <p class="detail-description">
-                An interactive 3D audio visualizer that transforms music into stunning visual art in real-time. This project explores the intersection of audio processing, 3D graphics, and user interaction to create an immersive multimedia experience. Built with Three.js and WebGL, the visualizer features dynamic particle systems that dance to the rhythm, responsive lighting effects that react to audio frequencies, multiple visualization modes to suit different musical styles, and customizable color schemes that allow users to personalize their experience. The technical implementation involves complex audio analysis using the Web Audio API, efficient 3D rendering optimized for smooth 60fps performance, and sophisticated shader programming to create visual effects that feel alive and responsive to the music's emotional content.
+                A beautifully designed website for Sushi Yun, a modern Japanese fusion restaurant located in Orange, California. This project serves as a comprehensive digital presence that combines elegant design with functional restaurant management features. The website features a responsive layout that looks stunning on both desktop and mobile devices, clean menu navigation with advanced search filtering capabilities, organized food categories including appetizers, rolls, nigiri, and specialty items, integrated hours of operation and contact information for easy customer access, and a gradient banner with styled typography and compelling call-to-action elements. Built with semantic HTML for accessibility, the site uses ARIA labels and modern CSS techniques including gradients and flexible grid layouts, enhanced with JavaScript for dynamic search functionality and interactive menu filtering.
             </p>
             <div class="tech-stack">
-                <div class="tech-item">Three.js</div>
-                <div class="tech-item">WebGL</div>
-                <div class="tech-item">Web Audio API</div>
-                <div class="tech-item">GLSL Shaders</div>
+                <div class="tech-item">HTML5</div>
+                <div class="tech-item">CSS3</div>
                 <div class="tech-item">JavaScript</div>
-                <div class="tech-item">Canvas API</div>
+                <div class="tech-item">Responsive Design</div>
+                <div class="tech-item">Google Fonts</div>
+                <div class="tech-item">Restaurant Management</div>
             </div>
         </div>
     </div>
 
     <div class="detail-section" id="detail-projects-2">
         <div class="detail-content">
-            <h1 class="detail-title">Music Mixer Hardware</h1>
-            <p class="detail-subtitle">Hardware Programming • Raspberry Pi & Python</p>
-            <a href="https://github.com/amyy2k/RasberryPiMusicMixer" target="_blank" class="detail-image" style="background-image: url('banner-projects-2.png')" title="View on GitHub"></a>
-            <p class="detail-description">
-                A custom-built music mixing station that brings the power of digital audio workstations into a tactile, hardware-based interface. This project demonstrates the integration of hardware and software to create professional-grade music production tools. The mixer features physical knobs and sliders for intuitive real-time audio manipulation, MIDI integration for seamless connectivity with existing music software, a responsive touch-screen interface for visual feedback and control, and robust audio processing capabilities perfect for live performances. Built on a Raspberry Pi foundation with custom Python software, the project showcases embedded systems programming, real-time audio processing, hardware interface design, and the challenges of creating reliable performance hardware that musicians can depend on in live settings.
-            </p>
-            <div class="tech-stack">
-                <div class="tech-item">Raspberry Pi</div>
-                <div class="tech-item">Python</div>
-                <div class="tech-item">MIDI Protocol</div>
-                <div class="tech-item">Audio Processing</div>
-                <div class="tech-item">Hardware Integration</div>
-                <div class="tech-item">Real-time Systems</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="detail-section" id="detail-projects-3">
-        <div class="detail-content">
-            <h1 class="detail-title">Fullerton Vending Database</h1>
-            <p class="detail-subtitle">Database Management • MySQL & Python</p>
-            <a href="https://github.com/amyy2k/vending-machine-database" target="_blank" class="detail-image" style="background-image: url('banner-projects-3.png')" title="View on GitHub"></a>
-            <p class="detail-description">
-                A comprehensive vending machine management system designed specifically for the Cal State Fullerton campus. This project demonstrates enterprise-level database design and management for real-world operational challenges. The system provides robust inventory tracking across multiple campus locations, detailed sales analytics for business intelligence, automated maintenance scheduling to ensure optimal machine performance, and real-time reporting capabilities accessible through an intuitive web dashboard. Built with MySQL for reliable data storage and Python for backend processing, the project showcases database optimization techniques, complex query design for analytics, automated reporting systems, and the integration of multiple data sources into a unified management platform.
-            </p>
-            <div class="tech-stack">
-                <div class="tech-item">MySQL</div>
-                <div class="tech-item">Python</div>
-                <div class="tech-item">Database Design</div>
-                <div class="tech-item">Data Analytics</div>
-                <div class="tech-item">Web Dashboard</div>
-                <div class="tech-item">Reporting Systems</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="detail-section" id="detail-projects-4">
-        <div class="detail-content">
-            <h1 class="detail-title">Hanloda's Avatar Company</h1>
-            <p class="detail-subtitle">3D Development • Blender & Unity</p>
-            <a href="https://github.com/amyy2k/hanloda-avatar" target="_blank" class="detail-image" style="background-image: url('banner-projects-4.png')" title="View on GitHub"></a>
-            <p class="detail-description">
-                An immersive virtual reality experience that pushes the boundaries of digital avatar creation and interactive virtual environments. This project represents the cutting edge of VR development and 3D character design. The experience features custom 3D avatars with detailed animations and expressions, interactive virtual environments that respond to user presence, physics-based interactions that feel natural and intuitive, and immersive gameplay mechanics designed specifically for virtual reality. Created using Blender for detailed 3D modeling and texturing, Unity for VR implementation and interaction systems, the project showcases advanced 3D pipeline workflows, VR UX design principles, performance optimization for immersive experiences, and the technical challenges of creating presence in virtual spaces.
-            </p>
-            <div class="tech-stack">
-                <div class="tech-item">Blender</div>
-                <div class="tech-item">Unity</div>
-                <div class="tech-item">VR Development</div>
-                <div class="tech-item">3D Modeling</div>
-                <div class="tech-item">Animation</div>
-                <div class="tech-item">Physics Systems</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="detail-section" id="detail-projects-5">
-        <div class="detail-content">
             <h1 class="detail-title">Adaptive Provisions Store</h1>
             <p class="detail-subtitle">Web Development • HTML, CSS & GSAP</p>
-            <a href="https://amyy2k.github.io/AdaptiveProvisions/" target="_blank" class="detail-image" style="background-image: url('banner-projects-5.png')" title="View on GitHub"></a>
+            <a href="https://amyy2k.github.io/AdaptiveProvisions/" target="_blank" class="detail-image" style="background-image: url('images/adaptiveprovisions.png')" title="View on GitHub"></a>
             <p class="detail-description">
                 A modern e-commerce website that demonstrates the power of thoughtful animation and interaction design in creating engaging shopping experiences. This project showcases advanced web development techniques focused on user engagement and conversion. The site features stunning animations powered by GSAP that guide users through the shopping journey, interactive product showcases that bring items to life, responsive design that works beautifully across all devices, and engaging user interactions that make shopping enjoyable rather than transactional. Built with semantic HTML for accessibility, advanced CSS for sophisticated layouts and effects, and GSAP for professional-grade animations, the project demonstrates modern web development best practices, performance optimization techniques, and the art of creating digital experiences that feel both premium and approachable.
             </p>
@@ -1669,49 +1696,106 @@
         </div>
     </div>
 
+    <div class="detail-section" id="detail-projects-3">
+        <div class="detail-content">
+            <h1 class="detail-title">Audio Visualizer</h1>
+            <p class="detail-subtitle">Web Development • Three.js & WebGL</p>
+            <a href="https://github.com/amyy2k/Audio-Visualizer-w-Lyrics" target="_blank" class="detail-image" style="background-image: url('images/visualizer.png')" title="View on GitHub"></a>
+            <p class="detail-description">
+                An interactive 3D audio visualizer that transforms music into stunning visual art in real-time. This project explores the intersection of audio processing, 3D graphics, and user interaction to create an immersive multimedia experience. Built with Three.js and WebGL, the visualizer features dynamic particle systems that dance to the rhythm, responsive lighting effects that react to audio frequencies, multiple visualization modes to suit different musical styles, and customizable color schemes that allow users to personalize their experience. The technical implementation involves complex audio analysis using the Web Audio API, efficient 3D rendering optimized for smooth 60fps performance, and sophisticated shader programming to create visual effects that feel alive and responsive to the music's emotional content.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">Three.js</div>
+                <div class="tech-item">WebGL</div>
+                <div class="tech-item">Web Audio API</div>
+                <div class="tech-item">GLSL Shaders</div>
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">Canvas API</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-projects-4">
+        <div class="detail-content">
+            <h1 class="detail-title">Music Mixer Hardware</h1>
+            <p class="detail-subtitle">Hardware Programming • Raspberry Pi & Python</p>
+            <a href="https://github.com/amyy2k/RasberryPiMusicMixer" target="_blank" class="detail-image" style="background-image: url('images/musicmixer.png')" title="View on GitHub"></a>
+            <p class="detail-description">
+                A custom-built music mixing station that brings the power of digital audio workstations into a tactile, hardware-based interface. This project demonstrates the integration of hardware and software to create professional-grade music production tools. The mixer features physical knobs and sliders for intuitive real-time audio manipulation, MIDI integration for seamless connectivity with existing music software, a responsive touch-screen interface for visual feedback and control, and robust audio processing capabilities perfect for live performances. Built on a Raspberry Pi foundation with custom Python software, the project showcases embedded systems programming, real-time audio processing, hardware interface design, and the challenges of creating reliable performance hardware that musicians can depend on in live settings.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">Raspberry Pi</div>
+                <div class="tech-item">Python</div>
+                <div class="tech-item">MIDI Protocol</div>
+                <div class="tech-item">Audio Processing</div>
+                <div class="tech-item">Hardware Integration</div>
+                <div class="tech-item">Real-time Systems</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-section" id="detail-projects-5">
+        <div class="detail-content">
+            <h1 class="detail-title">Fullerton Vending Database</h1>
+            <p class="detail-subtitle">Database Management • MySQL & Python</p>
+            <a href="https://github.com/amyy2k/vending-machine-database" target="_blank" class="detail-image" style="background-image: url('images/vendingmachine.png')" title="View on GitHub"></a>
+            <p class="detail-description">
+                A comprehensive vending machine management system designed specifically for the Cal State Fullerton campus. This project demonstrates enterprise-level database design and management for real-world operational challenges. The system provides robust inventory tracking across multiple campus locations, detailed sales analytics for business intelligence, automated maintenance scheduling to ensure optimal machine performance, and real-time reporting capabilities accessible through an intuitive web dashboard. Built with MySQL for reliable data storage and Python for backend processing, the project showcases database optimization techniques, complex query design for analytics, automated reporting systems, and the integration of multiple data sources into a unified management platform.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">MySQL</div>
+                <div class="tech-item">Python</div>
+                <div class="tech-item">Database Design</div>
+                <div class="tech-item">Data Analytics</div>
+                <div class="tech-item">Web Dashboard</div>
+                <div class="tech-item">Reporting Systems</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content End -->
     </div>
 
     <script>
         /*
-        IMAGE FILE NAMING CONVENTION:
+        IMAGE FILE NAMING CONVENTION (Updated paths to include /images folder):
 
         ALBUM IMAGES (Square, for player album art):
         About Me Album Images:
-        - album-about-0.png (Who am I)
-        - album-about-1.png (My Skills)
-        - album-about-2.png (My Interests)
-        - album-about-3.png (My Experience)
+        - images/Amy.png (Who am I)
+        - images/skills.png (My Skills)
+        - images/hobby.png (My Interests)
+        - images/experience.png (My Experience)
 
         Project Album Images:
-        - album-projects-0.png (Food Deli iOS App)
-        - album-projects-1.png (Audio Visualizer)
-        - album-projects-2.png (Music Mixer Hardware)
-        - album-projects-3.png (Fullerton Vending Database)
-        - album-projects-4.png (Hanloda's Avatar Company)
-        - album-projects-5.png (Adaptive Provisions Store)
+        - images/fooddeliicon.png (Food Deli iOS App)
+        - images/yunlogo.png (Sushi Yun Restaurant Website)
+        - images/adaptiveprovisions.png (Adaptive Provisions Store)
+        - images/visualizer.png (Audio Visualizer)
+        - images/musicmixer.png (Music Mixer Hardware)
+        - images/vendingmachine.png (Fullerton Vending Database)
 
         BANNER IMAGES (Rectangular, for detail section headers):
         About Me Banner Images:
-        - banner-about-0.png (Who am I)
-        - banner-about-1.png (My Skills)
-        - banner-about-2.png (My Interests)
-        - banner-about-3.png (My Experience)
+        - images/banner-about-0.png (Who am I)
+        - images/banner-about-1.png (My Skills)
+        - images/banner-about-2.png (My Interests)
+        - images/banner-about-3.png (My Experience)
 
         Project Banner Images:
-        - banner-projects-0.png (Food Deli iOS App)
-        - banner-projects-1.png (Audio Visualizer)
-        - banner-projects-2.png (Music Mixer Hardware)
-        - banner-projects-3.png (Fullerton Vending Database)
-        - banner-projects-4.png (Hanloda's Avatar Company)
-        - banner-projects-5.png (Adaptive Provisions Store)
+        - images/banner-projects-0.png (Food Deli iOS App)
+        - images/banner-projects-1.png (Sushi Yun Restaurant Website)
+        - images/banner-projects-2.png (Adaptive Provisions Store)
+        - images/banner-projects-3.png (Audio Visualizer)
+        - images/banner-projects-4.png (Music Mixer Hardware)
+        - images/banner-projects-5.png (Fullerton Vending Database)
 
-        All images should be placed in the same directory as this HTML file.
+        All images are now properly linked to the /images folder.
         Album images: Recommended size 300x300px (square)
         Banner images: Recommended size 500x200px (rectangular)
         */
 
-        // Project data
+        // Project data - UPDATED WITH IMAGES/ FOLDER PATHS
         const projects = [
             {
                 title: "Food Deli iOS App",
@@ -1719,39 +1803,15 @@
                 description: "A comprehensive food delivery application built with Swift and SwiftUI. Features real-time order tracking, user authentication, restaurant browsing, and seamless payment integration. Designed with a focus on user experience and performance optimization.",
                 duration: "6:24",
                 link: "https://github.com/amyy2k/FoodDeli",
-                image: "fooddeliicon.png"
+                image: "images/fooddeliicon.png"
             },
             {
-                title: "Audio Visualizer",
-                artist: "Web Development • Three.js & WebGL",
-                description: "An interactive 3D audio visualizer that responds to music in real-time. Built with Three.js and WebGL, featuring dynamic particle systems, responsive lighting effects, and multiple visualization modes with customizable color schemes.",
-                duration: "4:15",
-                link: "https://github.com/amyy2k/Audio-Visualizer-w-Lyrics",
-                image: "visualizer.png"
-            },
-            {
-                title: "Music Mixer Hardware",
-                artist: "Hardware Programming • Raspberry Pi & Python",
-                description: "A custom-built music mixing station using Raspberry Pi and Python. Features physical knobs and sliders for real-time audio manipulation, MIDI integration, and a responsive touch-screen interface. Perfect for live performances.",
-                duration: "3:42",
-                link: "https://github.com/amyy2k/RasberryPiMusicMixer",
-                image: "musicmixer.png"
-            },
-            {
-                title: "Fullerton Vending Database",
-                artist: "Database Management • MySQL & Python",
-                description: "A comprehensive vending machine management system for CSUF campus. Built with MySQL and Python, featuring inventory tracking, sales analytics, maintenance scheduling, and real-time reporting with an intuitive web dashboard.",
-                duration: "5:30",
-                link: "https://github.com/amyy2k/vending-machine-database",
-                image: "vendingmachine.png"
-            },
-            {
-                title: "Hanloda's Avatar Company",
-                artist: "3D Development • Blender & Unity",
-                description: "A virtual reality experience featuring custom 3D avatars and interactive environments. Built with Blender for 3D modeling and Unity for VR implementation. Includes physics-based interactions and immersive gameplay mechanics.",
-                duration: "7:18",
-                link: "https://github.com/amyy2k/hanloda-avatar",
-                image: "album-projects-4.png"
+                title: "Sushi Yun Restaurant Website",
+                artist: "Web Development • HTML, CSS & JavaScript",
+                description: "A beautifully designed website for Sushi Yun, a modern Japanese fusion restaurant in Orange, California. Features responsive design, clean menu navigation with search filtering, organized food categories, and integrated contact information with elegant typography.",
+                duration: "3:28",
+                link: "https://github.com/amyy2k/SushiYun",
+                image: "images/yunlogo.png"
             },
             {
                 title: "Adaptive Provisions Store",
@@ -1759,11 +1819,35 @@
                 description: "A modern e-commerce website with stunning animations and interactive elements. Built with HTML, CSS, and GSAP for smooth animations. Features responsive design, product showcases, and engaging user interactions.",
                 duration: "4:56",
                 link: "https://amyy2k.github.io/AdaptiveProvisions",
-                image: "adaptiveprovisions.png"
+                image: "images/adaptiveprovisions.png"
+            },
+            {
+                title: "Audio Visualizer",
+                artist: "Web Development • Three.js & WebGL",
+                description: "An interactive 3D audio visualizer that responds to music in real-time. Built with Three.js and WebGL, featuring dynamic particle systems, responsive lighting effects, and multiple visualization modes with customizable color schemes.",
+                duration: "4:15",
+                link: "https://github.com/amyy2k/Audio-Visualizer-w-Lyrics",
+                image: "images/visualizer.png"
+            },
+            {
+                title: "Music Mixer Hardware",
+                artist: "Hardware Programming • Raspberry Pi & Python",
+                description: "A custom-built music mixing station using Raspberry Pi and Python. Features physical knobs and sliders for real-time audio manipulation, MIDI integration, and a responsive touch-screen interface. Perfect for live performances.",
+                duration: "3:42",
+                link: "https://github.com/amyy2k/RasberryPiMusicMixer",
+                image: "images/musicmixer.png"
+            },
+            {
+                title: "Fullerton Vending Database",
+                artist: "Database Management • MySQL & Python",
+                description: "A comprehensive vending machine management system for CSUF campus. Built with MySQL and Python, featuring inventory tracking, sales analytics, maintenance scheduling, and real-time reporting with an intuitive web dashboard.",
+                duration: "5:30",
+                link: "https://github.com/amyy2k/vending-machine-database",
+                image: "images/vendingmachine.png"
             }
         ];
 
-        // About Me data
+        // About Me data - UPDATED WITH IMAGES/ FOLDER PATHS
         const aboutMe = [
             {
                 title: "Who am I",
@@ -1771,7 +1855,7 @@
                 description: "I'm Amy Nguyen, a passionate software developer and creative technologist. This portfolio showcases my strengths and creative thinking. If you would like to learn more, click on the album cover to expand!",
                 duration: "4:48",
                 link: "mailto:amyqanguyen@gmail.com",
-                image: "Amy.png"
+                image: "images/Amy.png"
             },
             {
                 title: "My Skills",
@@ -1779,7 +1863,7 @@
                 description: "Proficient in Swift, Python, JavaScript, HTML/CSS, and SQL. Experienced with frameworks like SwiftUI, Three.js, React, and tools like Blender, Unity, and various databases.",
                 duration: "5:12",
                 link: "https://github.com/amyy2k",
-                image: "skills.png"
+                image: "images/skills.png"
             },
             {
                 title: "My Interests",
@@ -1787,7 +1871,7 @@
                 description: "I enjoy jamming to music, playing video games, and cooking various dishes. From time to time I like to explore out of my reach for niche restaurants to try out.",
                 duration: "4:33",
                 link: "https://x.com/hanloda",
-                image: "hobby.png"
+                image: "images/hobby.png"
             },
             {
                 title: "My Experience",
@@ -1795,11 +1879,11 @@
                 description: "Although most of my time were from projects, I have been recently contracted to work on a website for a start up company.",
                 duration: "6:18",
                 link: "https://github.com/amyy2k",
-                image: "experience.png"
+                image: "images/experience.png"
             },
         ];
 
-        // Playlists - About Me is now the default
+        // Playlists - About Me is the default
         const playlists = {
             about: {
                 title: "About Me",
@@ -1842,6 +1926,7 @@
         const signature = document.getElementById('signature');
         const loadingScreen = document.getElementById('loadingScreen');
         const mainContent = document.getElementById('mainContent');
+        const wallIndicator = document.getElementById('wallIndicator');
 
         // Mini Player Elements
         const miniPlayerContainer = document.getElementById('miniPlayerContainer');
@@ -1892,16 +1977,16 @@
                 });
             });
 
-            // Control buttons
-            playBtn.addEventListener('click', togglePlayPause);
-            prevBtn.addEventListener('click', previousTrack);
-            nextBtn.addEventListener('click', nextTrack);
-            albumArt.addEventListener('click', scrollToDetail);
+            // Control buttons - Updated behavior
+            playBtn.addEventListener('click', openCurrentProject);
+            prevBtn.addEventListener('click', () => previousTrack(false)); // Main player - no auto scroll
+            nextBtn.addEventListener('click', () => nextTrack(false)); // Main player - no auto scroll
+            albumArt.addEventListener('click', scrollToDetail); // Album art now goes to detail section
 
-            // Mini player controls
-            miniPlayBtn.addEventListener('click', togglePlayPause);
-            miniPrevBtn.addEventListener('click', previousTrack);
-            miniNextBtn.addEventListener('click', nextTrack);
+            // Mini player controls - Updated behavior with auto-scroll
+            miniPlayBtn.addEventListener('click', openCurrentProject);
+            miniPrevBtn.addEventListener('click', () => previousTrack(true)); // Mini player - auto scroll
+            miniNextBtn.addEventListener('click', () => nextTrack(true)); // Mini player - auto scroll
             miniHomeBtn.addEventListener('click', scrollToHome);
 
             // Progress bar click
@@ -1932,18 +2017,21 @@
                 // Check which detail section is currently visible and update playlist label
                 const detailSections = document.querySelectorAll('.detail-section');
                 let currentVisiblePlaylist = null;
+                let currentVisibleIndex = null;
 
                 detailSections.forEach(section => {
                     const rect = section.getBoundingClientRect();
                     if (rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5) {
                         section.classList.add('visible');
 
-                        // Extract playlist type from section ID (e.g., "detail-about-0" -> "about")
+                        // Extract playlist type and index from section ID (e.g., "detail-about-0" -> "about", 0)
                         const sectionId = section.id;
                         if (sectionId.includes('detail-about')) {
                             currentVisiblePlaylist = 'about';
+                            currentVisibleIndex = parseInt(sectionId.split('-')[2]);
                         } else if (sectionId.includes('detail-projects')) {
                             currentVisiblePlaylist = 'projects';
+                            currentVisibleIndex = parseInt(sectionId.split('-')[2]);
                         }
                     } else {
                         section.classList.remove('visible');
@@ -1953,6 +2041,35 @@
                 // Update playlist label based on visible section
                 if (currentVisiblePlaylist && scrollPosition > showThreshold) {
                     updatePlaylistLabel(currentVisiblePlaylist);
+
+                    // Sync mini player with visible section if different from current state
+                    if (currentVisiblePlaylist !== currentPlaylist || currentVisibleIndex !== currentIndex) {
+                        // Update mini player tabs
+                        document.querySelectorAll('.mini-playlist-tab').forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+                        const activeTab = document.querySelector(`[data-playlist="${currentVisiblePlaylist}"].mini-playlist-tab`);
+                        if (activeTab) {
+                            activeTab.classList.add('active');
+                        }
+
+                        // Sync the current playlist and index with what's visible (but don't reload track data)
+                        if (currentVisibleIndex !== null) {
+                            currentPlaylist = currentVisiblePlaylist;
+                            currentIndex = currentVisibleIndex;
+
+                            // Update mini player display
+                            const tracks = getCurrentTracks();
+                            const track = tracks[currentIndex];
+                            if (track) {
+                                miniTrackTitle.textContent = track.title;
+                                miniTrackArtist.textContent = track.artist.split(' • ')[0];
+                                if (track.image) {
+                                    miniAlbumArt.style.backgroundImage = `url("${track.image}")`;
+                                }
+                            }
+                        }
+                    }
                 }
             });
         }
@@ -1962,6 +2079,25 @@
                 playlistLabelText.textContent = 'About Me';
             } else if (playlistType === 'projects') {
                 playlistLabelText.textContent = 'Projects';
+            }
+        }
+
+        function openCurrentProject() {
+            const tracks = getCurrentTracks();
+            const track = tracks[currentIndex];
+            if (track && track.link) {
+                // Open the project link in a new tab
+                window.open(track.link, '_blank');
+
+                // Update play button to show "playing" state briefly
+                playBtn.innerHTML = '⏸';
+                miniPlayBtn.innerHTML = '⏸';
+
+                // Reset to play button after a short delay
+                setTimeout(() => {
+                    playBtn.innerHTML = '▶';
+                    miniPlayBtn.innerHTML = '▶';
+                }, 1500);
             }
         }
 
@@ -2002,9 +2138,9 @@
             renderPlaylist();
             loadTrack(0);
 
-            // Auto-scroll to detail section if mini player is visible
-            if (miniPlayerContainer.classList.contains('visible')) {
-                setTimeout(() => scrollToDetail(), 200);
+            // If switching from mini player and user is scrolled down, auto-scroll to first detail section
+            if (window.scrollY > window.innerHeight * 0.8) {
+                setTimeout(() => scrollToDetail(), 100);
             }
         }
 
@@ -2029,7 +2165,10 @@
 
             // Add click listeners to new track items
             document.querySelectorAll('.track-item').forEach((item, index) => {
-                item.addEventListener('click', () => selectTrack(index));
+                item.addEventListener('click', () => {
+                    selectTrack(index);
+                    // Only select the track, don't auto-scroll to detail section
+                });
             });
         }
 
@@ -2077,21 +2216,25 @@
             // Reset progress
             progressBar.style.width = '0%';
 
-            // Update album art (both main and mini)
+            // Update album art (both main and mini) and wall indicator
             if (track.image) {
                 albumArt.style.backgroundImage = `url("${track.image}")`;
                 albumArt.classList.add('project-preview');
                 miniAlbumArt.style.backgroundImage = `url("${track.image}")`;
 
-                // Update overlay
+                // Show wall indicator and update overlay
+                wallIndicator.classList.remove('hidden');
                 overlayTitle.textContent = track.title;
-                overlayTech.textContent = 'Click to explore';
+                overlayTech.textContent = 'Click for more details';
             } else {
                 albumArt.style.backgroundImage = '';
                 albumArt.style.background = 'linear-gradient(135deg, var(--soft-blue), var(--plum))';
                 albumArt.classList.remove('project-preview');
                 miniAlbumArt.style.backgroundImage = '';
                 miniAlbumArt.style.background = 'linear-gradient(135deg, var(--soft-blue), var(--plum))';
+
+                // Hide wall indicator for default state
+                wallIndicator.classList.add('hidden');
             }
 
             // Reset play state
@@ -2170,24 +2313,42 @@
             return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
 
-        function previousTrack() {
+        function previousTrack(autoScroll = false) {
             const tracks = getCurrentTracks();
             const newIndex = currentIndex > 0 ? currentIndex - 1 : tracks.length - 1;
+
+            // Add visual feedback for mini player
+            if (autoScroll) {
+                miniPrevBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    miniPrevBtn.style.transform = 'scale(1)';
+                }, 150);
+            }
+
             selectTrack(newIndex);
 
-            // Auto-scroll to detail section if mini player is visible
-            if (miniPlayerContainer.classList.contains('visible')) {
+            // Auto-scroll to detail section if requested (e.g., from mini player)
+            if (autoScroll) {
                 setTimeout(() => scrollToDetail(), 100);
             }
         }
 
-        function nextTrack() {
+        function nextTrack(autoScroll = false) {
             const tracks = getCurrentTracks();
             const newIndex = currentIndex < tracks.length - 1 ? currentIndex + 1 : 0;
+
+            // Add visual feedback for mini player
+            if (autoScroll) {
+                miniNextBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    miniNextBtn.style.transform = 'scale(1)';
+                }, 150);
+            }
+
             selectTrack(newIndex);
 
-            // Auto-scroll to detail section if mini player is visible
-            if (miniPlayerContainer.classList.contains('visible')) {
+            // Auto-scroll to detail section if requested (e.g., from mini player)
+            if (autoScroll) {
                 setTimeout(() => scrollToDetail(), 100);
             }
         }
