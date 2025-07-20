@@ -45,5 +45,5 @@ This site is fully responsive across all modern devices — from desktops to mob
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/amyy2k/portfolio.git
+   git clone https://github.com/amyy2k.git
    cd portfolio
