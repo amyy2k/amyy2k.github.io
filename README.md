@@ -2,7 +2,7 @@
 
 Welcome to my interactive **portfolio website**, where I showcase my creative projects, UX design work, and front-end development skills. Built from the ground up with custom HTML, CSS, and JavaScript — this site serves as a dynamic introduction to who I am as a designer and developer.
 
-🔗 [Live Site](https://amyy2k.github.io) *(replace with your actual link if different)*
+🔗 [Live Site](https://amyy2k.github.io) 
 
 ---
 
