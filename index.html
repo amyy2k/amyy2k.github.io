@@ -2012,6 +2012,9 @@
                     miniPlayerContainer.classList.remove('visible');
                     playlistLabel.classList.remove('visible');
                     signature.classList.remove('hidden'); // Show signature when mini player hides
+
+                    // FIXED: When returning to home section, sync main player with current state
+                    syncMainPlayerWithCurrentState();
                 }
 
                 // Check which detail section is currently visible and update playlist label
@@ -2072,6 +2075,22 @@
                     }
                 }
             });
+        }
+
+        // NEW FUNCTION: Sync main player when returning to home
+        function syncMainPlayerWithCurrentState() {
+            // Update main playlist tabs to reflect current state
+            document.querySelectorAll('.playlist-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            const activeMainTab = document.querySelector(`[data-playlist="${currentPlaylist}"].playlist-tab`);
+            if (activeMainTab) {
+                activeMainTab.classList.add('active');
+            }
+
+            // Re-render playlist and reload current track to sync everything
+            renderPlaylist();
+            loadTrack(currentIndex);
         }
 
         function updatePlaylistLabel(playlistType) {
