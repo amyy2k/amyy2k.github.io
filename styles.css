@@ -726,6 +726,170 @@ body {
     transform: scale(1.05);
 }
 
+/* ===== EXPERIENCE SECTION ===== */
+.experience-section {
+    min-height: 100vh;
+    padding: 6rem 2rem 4rem;
+    background: var(--color-bg-main);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.experience-container {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.experience-headline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-medium-gray);
+    margin-bottom: 3rem;
+}
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: relative;
+}
+
+.experience-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.experience-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-text-primary);
+    border: 2px solid var(--color-card);
+    z-index: 2;
+}
+
+.experience-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1.5rem;
+    width: 2px;
+    height: calc(100% + 2.5rem);
+    background: var(--color-border);
+    z-index: 1;
+}
+
+.experience-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    position: relative;
+}
+
+.experience-title::before {
+    content: '—';
+    position: absolute;
+    left: -2rem;
+    color: var(--color-text-primary);
+    font-weight: 400;
+}
+
+.experience-dates {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.experience-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.experience-details li {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.experience-details li::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    color: var(--color-text-primary);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Responsive adjustments for experience section */
+@media (max-width: 768px) {
+    .experience-section {
+        padding: 4rem 1.5rem 3rem;
+    }
+
+    .experience-list {
+        gap: 2rem;
+    }
+
+    .experience-item {
+        padding-left: 1.5rem;
+    }
+
+    .experience-item::before {
+        width: 10px;
+        height: 10px;
+        left: -2px;
+    }
+
+    .experience-item:not(:last-child)::after {
+        left: 3px;
+    }
+
+    .experience-title::before {
+        left: -1.5rem;
+    }
+
+    .experience-title {
+        font-size: 1.1rem;
+    }
+
+    .experience-dates {
+        font-size: 0.95rem;
+    }
+
+    .experience-details {
+        margin-left: 0.25rem;
+    }
+
+    .experience-details li {
+        font-size: 0.9rem;
+        padding-left: 1rem;
+    }
+}
+
 /* ===== PROJECTS SECTION ===== */
 .projects-section {
     min-height: 100vh;
